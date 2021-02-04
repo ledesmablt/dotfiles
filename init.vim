@@ -48,11 +48,11 @@ cnoreabbrev <silent> <expr> rrc
 
 
 " imports
-source ~/.vim/plugins.vim
-source ~/.vim/coc.vim
-source ~/.vim/functions.vim
-source ~/.vim/mappings.vim
-source ~/.vim/display.vim
-if !empty(glob('~/.vim/test-settings.vim'))
-  source ~/.vim/test-settings.vim
+source ~/.vim/config/plugins.vim
+source ~/.vim/config/coc.vim
+source ~/.vim/config/functions.vim
+source ~/.vim/config/mappings.vim
+source ~/.vim/config/display.vim
+if !empty(glob('~/.vim/config/test-settings.vim'))
+  source ~/.vim/config/test-settings.vim
 endif

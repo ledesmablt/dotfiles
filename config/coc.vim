@@ -1,4 +1,5 @@
 """ CoC defaults -------------------------------------------------------------
+let g:coc_config_home = '~/.vim/config'
 " Some servers have issues with backup files, see #649.
 set nobackup nowritebackup
 

@@ -1,0 +1,9 @@
+.netrwhist
+autoload
+doc
+plugged
+plugin
+rundir
+undodir
+wiki
+*test*.vim

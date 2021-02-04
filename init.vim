@@ -6,6 +6,7 @@ set smartindent autoindent smarttab expandtab
 set nowrap
 set cursorline
 set incsearch
+set nohls
 set ignorecase smartcase
 
 set noruler
@@ -40,10 +41,10 @@ augroup END
 """ abbrevs ------------------------------------------------------------------
 cnoreabbrev <silent> <expr> erc 
       \ ((getcmdtype() is# ':' && getcmdline() is# 'erc')
-      \ ? ('e ~/.vimrc') : 'erc')
+      \ ? ('e ~/.vim/init.vim') : 'erc')
 cnoreabbrev <silent> <expr> rrc 
       \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
-      \ ? ('source ~/.vimrc <Bar> AirlineToggle <Bar> AirlineToggle') : 'rrc')
+      \ ? ('source ~/.vim/init.vim <Bar> AirlineToggle <Bar> AirlineToggle') : 'rrc')
 
 
 " imports

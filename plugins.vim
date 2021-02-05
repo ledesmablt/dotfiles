@@ -36,8 +36,8 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/edge'
 
 " for messing with new plugins
-if !empty(glob('~/.vim/config/test-plugins.vim'))
-  source ~/.vim/config/test-plugins.vim
+if !empty(glob('~/.config/vim/test-plugins.vim'))
+  source ~/.config/vim/test-plugins.vim
 endif
 call plug#end()
 

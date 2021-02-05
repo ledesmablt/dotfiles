@@ -1,4 +1,4 @@
-""" sane defaults ------------------------------------------------------------
+""" sane defaults
 syntax on
 filetype plugin indent on
 set number relativenumber
@@ -28,7 +28,7 @@ set noswapfile
 set noerrorbells
 
 
-""" augroups -----------------------------------------------------------------
+""" augroups
 augroup SyntaxSettings
   autocmd!
   autocmd Filetype * setlocal ts=2 sw=2
@@ -38,21 +38,21 @@ augroup SyntaxSettings
 augroup END
 
 
-""" abbrevs ------------------------------------------------------------------
+""" abbrevs
 cnoreabbrev <silent> <expr> erc 
       \ ((getcmdtype() is# ':' && getcmdline() is# 'erc')
-      \ ? ('e ~/.vim/init.vim') : 'erc')
+      \ ? ('e '.$MYVIMRC) : 'erc')
 cnoreabbrev <silent> <expr> rrc 
       \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
-      \ ? ('source ~/.vim/init.vim <Bar> AirlineToggle <Bar> AirlineToggle') : 'rrc')
+      \ ? ('source '.$MYVIMRC.' <Bar> AirlineToggle <Bar> AirlineToggle') : 'rrc')
 
 
 " imports
-source ~/.vim/config/plugins.vim
-source ~/.vim/config/coc.vim
-source ~/.vim/config/functions.vim
-source ~/.vim/config/mappings.vim
-source ~/.vim/config/display.vim
-if !empty(glob('~/.vim/config/test-settings.vim'))
-  source ~/.vim/config/test-settings.vim
+source ~/.config/vim/plugins.vim
+source ~/.config/vim/coc.vim
+source ~/.config/vim/functions.vim
+source ~/.config/vim/mappings.vim
+source ~/.config/vim/display.vim
+if !empty(glob('~/.config/vim/test-settings.vim'))
+  source ~/.config/vim/test-settings.vim
 endif

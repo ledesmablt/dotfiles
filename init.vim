@@ -38,6 +38,14 @@ augroup SyntaxSettings
   autocmd FileType python,markdown setlocal ts=4 sw=4
 augroup END
 
+augroup NVIM
+  if has('nvim')
+    autocmd TermOpen * startinsert
+    autocmd TermEnter * setlocal nonu nornu
+    autocmd TermLeave * setlocal nu rnu
+  endif
+augroup END
+
 
 """ abbrevs
 cnoreabbrev <silent> <expr> erc 
@@ -46,6 +54,9 @@ cnoreabbrev <silent> <expr> erc
 cnoreabbrev <silent> <expr> rrc 
       \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
       \ ? ('source '.$MYVIMRC.' <Bar> call lightline#update()') : 'rrc')
+cnoreabbrev <silent> <expr> cdf
+      \ ((getcmdtype() is# ':' && getcmdline() is# 'cdf')
+      \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
 
 " tmux display fix
 if exists('+termguicolors')

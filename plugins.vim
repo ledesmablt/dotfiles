@@ -34,9 +34,9 @@ Plug 'wadackel/vim-dogrun'
 Plug 'arcticicestudio/nord-vim'
 Plug 'sainnhe/edge'
 
-" for messing with new plugins
-if !empty(glob('~/.config/vim/test-plugins.vim'))
-  source ~/.config/vim/test-plugins.vim
+" test
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 call plug#end()
 

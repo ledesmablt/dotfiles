@@ -1,5 +1,6 @@
-""" mappings -----------------------------------------------------------------
+""" mappings
 let mapleader = ' '
+
 " editing
 nnoremap <silent> <leader>p :set paste!<CR>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
@@ -15,6 +16,9 @@ nnoremap <silent> <leader><C-H> :vnew<CR>
 nnoremap <silent> <leader><C-J> :below new<CR>
 nnoremap <silent> <leader><C-K> :new<CR>
 nnoremap <silent> <leader><C-L> :below vnew<CR>
+if has('nvim')
+  tnoremap <silent> <C-W> <C-\><C-N><C-W>
+endif
 
 " utility
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>

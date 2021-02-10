@@ -2,12 +2,12 @@
 call plug#begin('~/.vim/plugged')
 " menus
 Plug 'vimwiki/vimwiki'
-Plug 'vim-utils/vim-man'
+Plug 'vim-utils/vim-man', {'on': 'Man'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mbbill/undotree'
-Plug 'preservim/nerdtree'
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ledesmablt/vim-run'
 
 " functional
@@ -20,33 +20,28 @@ Plug 'diepm/vim-rest-console'
 
 " lang
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
+Plug 'peitalin/vim-jsx-typescript', {'for': 'typescriptreact'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
 
 " aesthetics
 Plug 'junegunn/goyo.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'
-" Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'arcticicestudio/nord-vim'
 Plug 'sainnhe/edge'
 
 " test
-if has('nvim')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-endif
 call plug#end()
 
 
 """ plugin settings
-
 " theme
-" set bg=dark
-" let g:edge_style = 'neon'
-" colo edge
 colo dogrun
 let g:lightline = {'colorscheme': 'dogrun'}
 
@@ -70,7 +65,6 @@ let g:vimwiki_list = [{
       \ ]
 
 " other
-" let g:airline_powerline_fonts = 1
 let g:highlightedyank_highlight_duration = 400
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:ft_man_no_sect_fallback = 1

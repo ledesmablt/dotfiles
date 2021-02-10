@@ -16,6 +16,20 @@ cnoreabbrev <silent> <expr> cdf
       \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
 
 
+" yank to windows clipboard
+function! LeaderYW(is_entire_file)
+  let clipfile = '/tmp/clip'
+  if a:is_entire_file
+    let yankedlines = getbufline('%', 1, '$')
+  else
+    let yankedlines = split(@0, "\n")
+  endif
+  call writefile(yankedlines, clipfile)
+  call system('cat '.clipfile.' | clip.exe')
+  messages clear
+  echo len(yankedlines).' lines yanked to clipboard'
+endfunction
+
 " diff 2 windows
 function! DiffThese()
   if &diff

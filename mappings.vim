@@ -23,8 +23,13 @@ endif
 " utility
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>
 vnoremap <silent> <leader>@ "0y:!xdg-open <C-R>0<CR>
-nnoremap <silent> <leader>yw :%y*<CR>
-vnoremap <silent> <leader>yw "*y
+if has('nvim')
+  nnoremap <silent> <leader>yw :%y*<CR>
+  vnoremap <silent> <leader>yw "*y
+elseif $PATH =~ '/mnt/c/Windows'
+  nnoremap <silent> <leader>yw :call LeaderYW(1)<CR>
+  vnoremap <silent> <leader>yw "0y:call LeaderYW(0)<CR>
+endif
 nnoremap <silent> <leader>dt :call DiffThese()<CR>
 
 " plugins

@@ -57,9 +57,9 @@ endif
 
 " imports
 source ~/.config/vim/plugins.vim
+source ~/.config/vim/mappings.vim
 source ~/.config/vim/coc.vim
 source ~/.config/vim/functions.vim
-source ~/.config/vim/mappings.vim
 if !empty(glob('~/.config/vim/test-settings.vim'))
   source ~/.config/vim/test-settings.vim
 endif

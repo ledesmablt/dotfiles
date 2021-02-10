@@ -74,4 +74,12 @@ let g:vrc_response_default_content_type = 'application/json'
 let g:vrc_curl_opts = {'-s': ''}
 if has('nvim')
   let g:run_nostream_default = 1
+	lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+}
+EOF
 endif

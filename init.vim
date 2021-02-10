@@ -47,17 +47,6 @@ augroup NVIM
 augroup END
 
 
-""" abbrevs
-cnoreabbrev <silent> <expr> erc 
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'erc')
-      \ ? ('e ~/.config/vim/init.vim') : 'erc')
-cnoreabbrev <silent> <expr> rrc 
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
-      \ ? ('source '.$MYVIMRC.' <Bar> call lightline#update()') : 'rrc')
-cnoreabbrev <silent> <expr> cdf
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'cdf')
-      \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
-
 " tmux display fix
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

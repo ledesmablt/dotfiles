@@ -1,4 +1,22 @@
-""" functions
+""" functions & abbrevs
+" edit vimrc
+let rcloc = '~/.config/vim/init.vim'
+cnoreabbrev <silent> <expr> erc
+      \ ((getcmdtype() is# ':' && getcmdline() is# 'erc')
+      \ ? ('e '.rcloc) : 'erc')
+
+" reload vimrc
+cnoreabbrev <silent> <expr> rrc
+      \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
+      \ ? ('source '.rcloc.' <Bar> call lightline#update()') : 'rrc')
+
+" cd to buffer dir
+cnoreabbrev <silent> <expr> cdf
+      \ ((getcmdtype() is# ':' && getcmdline() is# 'cdf')
+      \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
+
+
+" yank to windows clipboard
 function! LeaderYW(is_entire_file)
   let clipfile = '/tmp/clip'
   if a:is_entire_file
@@ -12,13 +30,7 @@ function! LeaderYW(is_entire_file)
   echo len(yankedlines).' lines yanked to clipboard'
 endfunction
 
-function! s:getrc()
-  let gistid = '8a14ed0126e77a6ef392e53c148d66c2'
-  exec 'Gist '.gistid
-endfunction
-command GetRC :call s:getrc()
-command Rest :e ~/.rest
-
+" diff 2 windows
 function! DiffThese()
   if &diff
     diffoff!
@@ -34,3 +46,6 @@ function! DiffThese()
     exec currentwin.'wincmd w'
   endif
 endfunction
+
+" open rest default file 
+command Rest :e ~/.rest

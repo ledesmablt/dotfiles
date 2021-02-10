@@ -5,7 +5,8 @@ let mapleader = ' '
 nnoremap <silent> <leader>p :set paste!<CR>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
 nnoremap <silent> <leader>t oi<C-R>=
-vnoremap <silent> <leader>p "_dP<CR>
+vnoremap <silent> <leader>p "_dp<CR>
+vnoremap <silent> <leader>P "_dP<CR>
 
 " windows
 nnoremap <silent> <leader>h :wincmd h<CR>

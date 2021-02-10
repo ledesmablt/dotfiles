@@ -12,6 +12,7 @@ Plug 'ledesmablt/vim-run'
 
 " functional
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -33,8 +34,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
 Plug 'wadackel/vim-dogrun'
-Plug 'arcticicestudio/nord-vim'
-Plug 'sainnhe/edge'
 
 " test
 call plug#end()

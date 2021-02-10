@@ -12,10 +12,10 @@ nnoremap <silent> <leader>h :wincmd h<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
-nnoremap <silent> <leader><C-H> :vnew<CR>
-nnoremap <silent> <leader><C-J> :below new<CR>
-nnoremap <silent> <leader><C-K> :new<CR>
-nnoremap <silent> <leader><C-L> :below vnew<CR>
+nnoremap <silent> <leader>H :vnew<CR>
+nnoremap <silent> <leader>J :below new<CR>
+nnoremap <silent> <leader>K :new<CR>
+nnoremap <silent> <leader>L :below vnew<CR>
 if has('nvim')
   tnoremap <silent> <C-W> <C-\><C-N><C-W>
 endif

@@ -43,6 +43,7 @@ augroup NVIM
     autocmd TermOpen * startinsert
     autocmd TermEnter * setlocal nonu nornu
     autocmd TermLeave * setlocal nu rnu
+    autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
   endif
 augroup END
 

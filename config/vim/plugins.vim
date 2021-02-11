@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ledesmablt/vim-run'
+Plug 'junegunn/vim-peekaboo'
 
 " functional
 Plug 'tpope/vim-surround'
@@ -71,6 +72,10 @@ let g:run_autosave_logs = 1
 let g:run_quiet_default = 1
 let g:vrc_response_default_content_type = 'application/json'
 let g:vrc_curl_opts = {'-s': ''}
+let g:peekaboo_delay = 1200
+
+
+" nvim only
 if has('nvim')
   let g:run_nostream_default = 1
 	lua <<EOF

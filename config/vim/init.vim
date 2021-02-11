@@ -36,6 +36,7 @@ augroup SyntaxSettings
   autocmd BufNewFile,BufRead *doc/*.txt setlocal ft=help ts=8 sw=8
   autocmd BufNewFile,BufRead *.tsx,*.jsx setlocal filetype=typescriptreact
   autocmd FileType python,markdown setlocal ts=4 sw=4
+  autocmd FileType git set foldlevel=1
 augroup END
 
 augroup NVIM

@@ -1,9 +1,12 @@
-# env (avoid double-sourcing)
+# env
+export MANPAGER='nvim +Man!'
+export FZF_DEFAULT_COMMAND="ag -g"
+export EDITOR=nvim
+export GOPATH=/home/benj/.go
+
+# avoid double-sourcing PATH
 if [[ -z "$ZSHENV_SOURCED" ]]; then
   export ZSHENV_SOURCED=1
-  export FZF_DEFAULT_COMMAND="ag -g"
-  export EDITOR=nvim
-  export GOPATH=/home/benj/.go
   export PATH=$PATH:$GOPATH
   export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
   export PATH="/home/benj/.local/bin:$PATH"
@@ -17,7 +20,7 @@ alias spicetify="powershell.exe spicetify"
 alias python="python3"
 alias pip="pip3"
 alias pydoc="python3 -m pydoc"
-alias man="viman"
+alias src="source ~/.zshrc"
 alias erc="vim ~/.config/vim/init.vim -c 'cd ~/.config/vim'"
 alias vim="nvim"
 alias f="/home/benj/scripts/search"

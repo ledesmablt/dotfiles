@@ -1,5 +1,19 @@
 """ CoC defaults
 let g:coc_config_home = '~/.config/vim'
+let g:coc_global_extensions = [
+      \ 'coc-marketplace',
+      \ 'coc-vimlsp',
+      \ 'coc-git',
+      \ 'coc-json',
+      \ 'coc-sh',
+      \ 'coc-python',
+      \ 'coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-emmet',
+      \ 'coc-css',
+      \ 'coc-solargraph',
+      \ ]
+
 " Some servers have issues with backup files, see #649.
 set nobackup nowritebackup
 

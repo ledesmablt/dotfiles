@@ -10,6 +10,7 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ledesmablt/vim-run'
 Plug 'junegunn/vim-peekaboo'
+Plug 'Lenovsky/nuake'
 
 " functional
 Plug 'tpope/vim-surround'

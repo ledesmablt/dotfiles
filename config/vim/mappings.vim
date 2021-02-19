@@ -41,3 +41,6 @@ nnoremap <silent> <leader>ss :Ag<CR>
 nnoremap <silent> <leader>sf :History<CR>
 nnoremap <silent> <leader>sh :History:<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+nnoremap <silent> <F4> :Nuake<CR>
+inoremap <silent> <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <silent> <F4> <C-\><C-n>:Nuake<CR>

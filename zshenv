@@ -1,6 +1,7 @@
 # env
 export MANPAGER='nvim +Man!'
-export FZF_DEFAULT_COMMAND="ag -g"
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export EDITOR=nvim
 export GOPATH=/home/benj/.go
 

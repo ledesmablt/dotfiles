@@ -1,6 +1,14 @@
 """ mappings
 let mapleader = ' '
 
+" filetype-specific
+augroup FTMappings
+  autocmd!
+  autocmd Filetype man nnoremap <buffer> q :q<CR>
+  autocmd FileType git nnoremap <buffer> <C-j> :cn<CR>
+  autocmd FileType git nnoremap <buffer> <C-k> :cp<CR>
+augroup END
+
 " editing
 nnoremap <silent> <leader>p :set paste!<CR>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>

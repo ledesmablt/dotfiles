@@ -22,6 +22,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 set hidden
+set nofixeol
 set autoread
 set undodir=~/.vim/undodir
 set undofile
@@ -35,9 +36,9 @@ augroup SyntaxSettings
   autocmd Filetype * setlocal ts=2 sw=2
   autocmd BufNewFile,BufRead *doc/*.txt setlocal ft=help ts=8 sw=8
   autocmd BufNewFile,BufRead *.tsx,*.jsx setlocal filetype=typescriptreact
+  autocmd BufNewFile,BufRead *.graphql setlocal filetype=graphql
   autocmd FileType python,markdown setlocal ts=4 sw=4
   autocmd FileType git set foldlevel=1
-  autocmd Filetype man nnoremap <buffer> q :q<CR>
 augroup END
 
 augroup NVIM

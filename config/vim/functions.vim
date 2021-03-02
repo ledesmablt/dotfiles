@@ -46,6 +46,7 @@ function! DiffThese()
     exec currentwin.'wincmd w'
   endif
 endfunction
+command DiffThese :call Diffthese()
 
 " open rest default file 
 command Rest :e ~/.rest

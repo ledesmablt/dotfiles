@@ -21,7 +21,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=( \
   git gitfast tmux \
   docker fzf gcloud \
-  yarn pip gem rails \
+  yarn pip gem bundler rails rbenv golang \
   urltools \
 )
 

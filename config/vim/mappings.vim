@@ -4,9 +4,7 @@ let mapleader = ' '
 " filetype-specific
 augroup FTMappings
   autocmd!
-  autocmd Filetype man nnoremap <buffer> q :q<CR>
-  autocmd FileType git nnoremap <buffer> <C-j> :cn<CR>
-  autocmd FileType git nnoremap <buffer> <C-k> :cp<CR>
+  autocmd Filetype man nnoremap <buffer> <silent> q :q<CR>
 augroup END
 
 " editing
@@ -28,6 +26,8 @@ nnoremap <silent> <leader>L :below vnew<CR>
 if has('nvim')
   tnoremap <silent> <C-W> <C-\><C-N><C-W>
 endif
+nnoremap <silent> <C-J> :cn<CR>
+nnoremap <silent> <C-K> :cp<CR>
 
 " utility
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>

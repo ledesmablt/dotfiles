@@ -10,6 +10,10 @@ export PATH=$PATH:$GOPATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/benj/.local/bin:$PATH"
 export PATH=$PATH:/home/benj/scripts
+# ruby init
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+eval "$(rbenv init -)"
 
 # aliases (must be here to work in vim :! mode)
 alias so=source

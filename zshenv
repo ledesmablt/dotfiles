@@ -5,14 +5,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export EDITOR=nvim
 export GOPATH=/home/benj/.go
 
-# avoid double-sourcing PATH
-if [[ -z "$ZSHENV_SOURCED" ]]; then
-  export ZSHENV_SOURCED=1
-  export PATH=$PATH:$GOPATH
-  export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-  export PATH="/home/benj/.local/bin:$PATH"
-  export PATH=$PATH:/home/benj/scripts
-fi
+export ZSHENV_SOURCED=1
+export PATH=$PATH:$GOPATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/benj/.local/bin:$PATH"
+export PATH=$PATH:/home/benj/scripts
 
 # aliases (must be here to work in vim :! mode)
 alias so=source

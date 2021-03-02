@@ -10,5 +10,6 @@
     "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql"
   ],
   "prettier.endOfLine": "auto",
-  "graphql.debug": false
+  "graphql.debug": false,
+  "snippets.userSnippetsDirectory": "~/.config/vim/snips"
 }

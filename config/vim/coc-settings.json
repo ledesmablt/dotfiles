@@ -1,5 +1,14 @@
 {
   // "suggest.noselect": false,
-  "python.pythonPath": "/usr/bin/python3"
-  , "solargraph.useBundler": true
+  "python.pythonPath": "/usr/bin/python3",
+  "solargraph.useBundler": false,
+  "solargraph.commandPath": "~/.rbenv/shims/solargraph",
+  "eslint.validate": [
+    "javascript", "javascriptreact", "typescript", "typescriptreact"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql"
+  ],
+  "prettier.endOfLine": "auto",
+  "graphql.debug": false
 }

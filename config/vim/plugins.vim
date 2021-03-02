@@ -25,6 +25,7 @@ Plug 'diepm/vim-rest-console'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
 Plug 'peitalin/vim-jsx-typescript', {'for': 'typescriptreact'}
+Plug 'jparise/vim-graphql'
 Plug 'mattn/emmet-vim'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 if has('nvim')

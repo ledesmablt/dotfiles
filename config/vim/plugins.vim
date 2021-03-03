@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'unblevable/quick-scope'
 Plug 'diepm/vim-rest-console'
+Plug 'SirVer/ultisnips'
 
 " lang
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -76,6 +77,9 @@ let g:run_quiet_default = 1
 let g:vrc_response_default_content_type = 'application/json'
 let g:vrc_curl_opts = {'-s': ''}
 let g:peekaboo_delay = 1200
+let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 
 " nvim only

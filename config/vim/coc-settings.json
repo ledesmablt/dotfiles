@@ -1,5 +1,4 @@
 {
-  // "suggest.noselect": false,
   "python.pythonPath": "/usr/bin/python3",
   "solargraph.useBundler": false,
   "solargraph.commandPath": "~/.rbenv/shims/solargraph",
@@ -11,5 +10,4 @@
   ],
   "prettier.endOfLine": "auto",
   "graphql.debug": false,
-  "snippets.userSnippetsDirectory": "~/.config/vim/snips"
 }

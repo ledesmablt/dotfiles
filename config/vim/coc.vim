@@ -43,11 +43,11 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " Show commands.
-nnoremap <silent><nowait> <leader>gc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> gc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>go  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> go  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <leader>gs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> gs  :<C-u>CocList -I symbols<cr>
 " Do default action for next / previous item.
 " nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>

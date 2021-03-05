@@ -71,3 +71,9 @@ function! WipeMatchingBuffers(pattern)
 endfunction
 
 command! -nargs=1 BW call WipeMatchingBuffers('<args>')
+
+function! ShowFileRelpath()
+  let cwd = getcwd()
+  let s = substitute(expand('%:p'), cwd . '/' , '', '')
+  echo s
+endfunction

@@ -40,6 +40,7 @@ elseif $PATH =~ '/mnt/c/Windows'
   vnoremap <silent> <leader>yw "0y:call LeaderYW(0)<CR>
 endif
 nnoremap <silent> <leader>dt :call DiffThese()<CR>
+nnoremap <silent> <leader>n :call ShowFileRelpath()<CR>
 
 " plugins
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>

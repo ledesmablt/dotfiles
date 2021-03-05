@@ -38,6 +38,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 Plug 'wadackel/vim-dogrun'
 
 " test
@@ -47,7 +48,19 @@ call plug#end()
 """ plugin settings
 " theme
 colo dogrun
-let g:lightline = {'colorscheme': 'dogrun'}
+let g:lightline = {'colorscheme': 'dogrun',
+      \ 'active': {
+      \   'left': [
+      \       ['mode', 'paste'],
+      \       ['readonly', 'filename', 'modified']
+      \   ],
+      \   'right': [
+      \       [], ['filetype'], ['gitbranch']
+      \   ],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ }}
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'

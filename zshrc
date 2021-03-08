@@ -20,8 +20,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=( \
   git gitfast tmux \
-  docker fzf gcloud \
-  yarn pip gem bundler rails rbenv golang \
+  docker docker-compose fzf gcloud \
+  yarn pip gem bundler rails golang \
   urltools \
 )
 

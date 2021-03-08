@@ -1,7 +1,8 @@
 {
   "python.pythonPath": "/usr/bin/python3",
   "solargraph.useBundler": false,
-  "solargraph.commandPath": "~/.rbenv/shims/solargraph",
+  "solargraph.commandPath": "/usr/local/bin/solargraph",
+  "solargraph.checkGemVersion": false,
   "eslint.validate": [
     "javascript", "javascriptreact", "typescript", "typescriptreact"
   ],

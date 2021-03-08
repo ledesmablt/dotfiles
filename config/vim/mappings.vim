@@ -8,6 +8,8 @@ augroup FTMappings
 augroup END
 
 " editing
+nnoremap <silent> <leader>? :Maps<CR>
+nnoremap <silent> <leader><Tab> <C-^>
 nnoremap <silent> <leader>p :set paste!<CR>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
 nnoremap <silent> <leader>t oi<C-R>=
@@ -49,6 +51,7 @@ nnoremap <silent> <leader>f :Files .<CR>
 nnoremap <silent> <leader>ss :Ag<CR>
 nnoremap <silent> <leader>sf :History<CR>
 nnoremap <silent> <leader>sh :History:<CR>
+nnoremap <silent> <leader>sn :Snippets<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <F4> :Nuake<CR>
 inoremap <silent> <F4> <C-\><C-n>:Nuake<CR>

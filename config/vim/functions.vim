@@ -77,3 +77,5 @@ function! ShowFileRelpath()
   let s = substitute(expand('%:p'), cwd . '/' , '', '')
   echo s
 endfunction
+
+command! Q mksession | q

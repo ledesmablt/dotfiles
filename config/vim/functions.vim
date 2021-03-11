@@ -16,7 +16,12 @@ cnoreabbrev <silent> <expr> cdf
       \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
 
 
-" yank to windows clipboard
+""" one-liner commands
+command Rest :e ~/.rest
+command! Q mksession | q
+
+
+""" mapping-related functions
 function! LeaderYW(is_entire_file)
   let clipfile = '/tmp/clip'
   if a:is_entire_file
@@ -30,8 +35,25 @@ function! LeaderYW(is_entire_file)
   echo len(yankedlines).' lines yanked to clipboard'
 endfunction
 
+function! SearchFiles()
+  if len(gitbranch#name()) > 0
+    GFiles
+  else
+    Files .
+  endif
+endfunction
+
+function! ShowFileRelpath()
+  let cwd = getcwd()
+  let fpath = substitute(expand('%:p'), cwd . '/' , '', '')
+  echo fpath
+endfunction
+
+
+""" command-related functions
 " diff 2 windows
-function! DiffThese()
+command! DiffThese :call <SID>diff_these()
+function! s:diff_these()
   if &diff
     diffoff!
   elseif winnr('$') != 2
@@ -46,36 +68,16 @@ function! DiffThese()
     exec currentwin.'wincmd w'
   endif
 endfunction
-command DiffThese :call Diffthese()
-
-" open rest default file 
-command Rest :e ~/.rest
 
 
 " wipe matching buffers
-function! GetBufferList()
-  return filter(range(1,bufnr('$')), 'buflisted(v:val)')
-endfunction
-
-function! GetMatchingBuffers(pattern)
-  return filter(GetBufferList(), 'bufname(v:val) =~ a:pattern')
-endfunction
-
-function! WipeMatchingBuffers(pattern)
-  let matchlist = GetMatchingBuffers(a:pattern)
+command! -nargs=1 BW call <SID>wipe_matching_buffers('<args>')
+function! s:wipe_matching_buffers(pattern)
+  let bufferlist = filter(range(1,bufnr('$')), 'buflisted(v:val)')
+  let matchlist = filter(bufferlist, 'bufname(v:val) =~ a:pattern')
   if len(matchlist) < 1
     echo 'No buffers found matching pattern ' . a:pattern
     return
   endif
   exec 'bw '.join(matchlist, ' ')
 endfunction
-
-command! -nargs=1 BW call WipeMatchingBuffers('<args>')
-
-function! ShowFileRelpath()
-  let cwd = getcwd()
-  let s = substitute(expand('%:p'), cwd . '/' , '', '')
-  echo s
-endfunction
-
-command! Q mksession | q

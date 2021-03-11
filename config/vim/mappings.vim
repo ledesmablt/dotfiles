@@ -25,6 +25,8 @@ nnoremap <silent> <leader>H :vnew<CR>
 nnoremap <silent> <leader>J :below new<CR>
 nnoremap <silent> <leader>K :new<CR>
 nnoremap <silent> <leader>L :below vnew<CR>
+nnoremap <silent> <M-[> :resize -2<CR>
+nnoremap <silent> <M-]> :resize +2<CR>
 if has('nvim')
   tnoremap <silent> <C-W> <C-\><C-N><C-W>
 endif
@@ -32,6 +34,7 @@ nnoremap <silent> <C-J> :cn<CR>
 nnoremap <silent> <C-K> :cp<CR>
 
 " utility
+nnoremap <silent> <leader>td :VimwikiIndex<CR> :VimwikiGoto todo<CR>
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>
 vnoremap <silent> <leader>@ "0y:!xdg-open <C-R>0<CR>
 if has('nvim')

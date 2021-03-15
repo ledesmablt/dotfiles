@@ -51,6 +51,7 @@ nnoremap <silent> <leader>n :call ShowFileRelpath()<CR>
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>f :call SearchFiles()<CR>
+nnoremap <silent> <leader>m :Marks<CR>
 nnoremap <silent> <leader>ss :Ag<CR>
 nnoremap <silent> <leader>sf :History<CR>
 nnoremap <silent> <leader>sh :History:<CR>

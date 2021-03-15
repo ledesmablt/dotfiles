@@ -10,23 +10,24 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ledesmablt/vim-run'
 Plug 'junegunn/vim-peekaboo'
-Plug 'Lenovsky/nuake'
+Plug 'Lenovsky/nuake', {'on': 'Nuake'}
 
 " functional
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
 Plug 'mhinz/vim-signify'
 Plug 'unblevable/quick-scope'
-Plug 'diepm/vim-rest-console'
+Plug 'diepm/vim-rest-console', {'for': 'rest'}
 Plug 'SirVer/ultisnips'
 
 " lang
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
 Plug 'peitalin/vim-jsx-typescript', {'for': 'typescriptreact'}
-Plug 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'mattn/emmet-vim'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 if has('nvim')

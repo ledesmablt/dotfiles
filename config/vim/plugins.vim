@@ -3,24 +3,25 @@ call plug#begin('~/.vim/plugged')
 " menus
 Plug 'vimwiki/vimwiki'
 Plug 'vim-utils/vim-man', {'on': 'Man'}
-Plug 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep', {'on': 'Rg'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ledesmablt/vim-run'
 Plug 'junegunn/vim-peekaboo'
+Plug 'diepm/vim-rest-console', {'for': 'rest'}
 Plug 'Lenovsky/nuake', {'on': 'Nuake'}
+Plug 'dbeniamine/cheat.sh-vim', {'on': 'HowIn'}
 
-" functional
-Plug 'tpope/vim-surround'
+" editing
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'mhinz/vim-signify'
 Plug 'unblevable/quick-scope'
-Plug 'diepm/vim-rest-console', {'for': 'rest'}
 Plug 'SirVer/ultisnips'
 
 " lang
@@ -42,7 +43,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'wadackel/vim-dogrun'
 
-" test
 call plug#end()
 
 

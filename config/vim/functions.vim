@@ -36,7 +36,7 @@ function! LeaderYW(is_entire_file)
 endfunction
 
 function! SearchFiles()
-  if len(gitbranch#name()) > 0
+  if len(gitbranch#dir(getcwd())) > 0
     GFiles
   else
     Files .
@@ -68,7 +68,6 @@ function! s:diff_these()
     exec currentwin.'wincmd w'
   endif
 endfunction
-
 
 " wipe matching buffers
 command! -nargs=1 BW call <SID>wipe_matching_buffers('<args>')

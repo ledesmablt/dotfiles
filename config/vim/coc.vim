@@ -42,7 +42,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " Show commands.
-nnoremap <silent><nowait> gc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>gc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> go  :<C-u>CocList outline<cr>
 " Search workspace symbols.

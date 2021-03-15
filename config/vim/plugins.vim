@@ -15,7 +15,7 @@ Plug 'Lenovsky/nuake'
 " functional
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'unblevable/quick-scope'

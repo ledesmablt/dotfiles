@@ -1,22 +1,8 @@
-""" functions & abbrevs
-" edit vimrc
-let rcloc = '~/.config/vim/init.vim'
-cnoreabbrev <silent> <expr> erc
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'erc')
-      \ ? ('e '.rcloc) : 'erc')
-
-" reload vimrc
-cnoreabbrev <silent> <expr> rrc
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'rrc')
-      \ ? ('source '.rcloc.' <Bar> call lightline#update()') : 'rrc')
-
-" cd to buffer dir
-cnoreabbrev <silent> <expr> cdf
-      \ ((getcmdtype() is# ':' && getcmdline() is# 'cdf')
-      \ ? ('cd %:p:h <Bar> pwd') : 'cdf')
-
-
+""" functions
 """ one-liner commands
+command! ERC :exec 'e '.$MYVIMRC
+command! RRC :exec 'source '.$MYVIMRC.' <Bar> call lightline#update()'
+command! CDF :cd %:p:h
 command Rest :e ~/.rest
 command! Q mksession | q
 

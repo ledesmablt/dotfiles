@@ -21,7 +21,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=( \
   git gitfast tmux \
   docker docker-compose fzf gcloud \
-  yarn pip gem bundler rails golang \
+  yarn pip gem bundler rails rvm golang \
   urltools \
 )
 
@@ -49,3 +49,6 @@ setopt extendedglob
 
 # source env & aliases
 source ~/.zshenv
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

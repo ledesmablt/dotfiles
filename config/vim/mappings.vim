@@ -50,7 +50,8 @@ nnoremap <silent> <leader>n :call ShowFileRelpath()<CR>
 " plugins
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :call SearchFiles()<CR>
+nnoremap <silent> <leader>f :Files .<CR>
+nnoremap <silent> <leader>gf :GitFiles<CR>
 nnoremap <silent> <leader>m :Marks<CR>
 nnoremap <silent> <leader>ss :Ag<CR>
 nnoremap <silent> <leader>sf :History<CR>
@@ -62,3 +63,5 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <F4> :Nuake<CR>
 inoremap <silent> <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <silent> <F4> <C-\><C-n>:Nuake<CR>
+nnoremap <silent> dga :diffget //2<CR>
+nnoremap <silent> dgl :diffget //3<CR>

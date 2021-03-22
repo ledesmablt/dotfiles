@@ -21,14 +21,6 @@ function! LeaderYW(is_entire_file)
   echo len(yankedlines).' lines yanked to clipboard'
 endfunction
 
-function! SearchFiles()
-  if len(gitbranch#dir(getcwd())) > 0
-    GFiles
-  else
-    Files .
-  endif
-endfunction
-
 function! ShowFileRelpath()
   let cwd = getcwd()
   let fpath = substitute(expand('%:p'), cwd . '/' , '', '')

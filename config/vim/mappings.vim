@@ -5,6 +5,7 @@ let mapleader = ' '
 augroup FTMappings
   autocmd!
   autocmd Filetype man nnoremap <buffer> <silent> q :q<CR>
+  autocmd Filetype vimwiki vnoremap <buffer> <silent> <leader>l <ESC>`<i[<ESC>`>la]()<ESC>"*P0`<
 augroup END
 
 " editing
@@ -34,6 +35,7 @@ nnoremap <silent> <C-J> :cn<CR>
 nnoremap <silent> <C-K> :cp<CR>
 
 " utility
+nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>
 nnoremap <silent> <leader>td :VimwikiIndex<CR> :VimwikiGoto todo<CR>
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>
 vnoremap <silent> <leader>@ "0y:!xdg-open <C-R>0<CR>
@@ -48,6 +50,7 @@ nnoremap <silent> <leader>dt :call DiffThese()<CR>
 nnoremap <silent> <leader>n :call ShowFileRelpath()<CR>
 
 " plugins
+imap <silent> <C-l> <C-y>,
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>f :Files .<CR>

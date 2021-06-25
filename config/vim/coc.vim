@@ -75,7 +75,7 @@ endfunction
 
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 augroup mygroup
   autocmd!
@@ -132,3 +132,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+let coc_settings_override = FindFileInParents('coc-settings.json')
+if len(coc_settings_override)
+  " update CocConfig file if coc-settings.json exists in parents
+  let g:coc_config_home = fnamemodify(coc_settings_override, ':h')
+endif

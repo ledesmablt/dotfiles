@@ -58,3 +58,15 @@ function! s:wipe_matching_buffers(pattern)
   endif
   exec 'bw '.join(matchlist, ' ')
 endfunction
+
+function! FindFileInParents(filename)
+  let cwd = getcwd()
+  while cwd != $HOME
+    let filepath = cwd.'/'.a:filename
+    if filereadable(filepath)
+      return filepath
+    endif
+    let cwd = fnamemodify(cwd, ':h')
+  endwhile
+  return ''
+endfunction

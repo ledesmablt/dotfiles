@@ -20,8 +20,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=( \
   git gitfast tmux \
-  docker docker-compose fzf gcloud \
-  yarn pip gem bundler rails rvm golang \
+  docker docker-compose fzf gcloud aws \
+  yarn nvm pip gem bundler rails rvm golang \
   urltools \
 )
 
@@ -52,3 +52,7 @@ source ~/.zshenv
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

@@ -3,7 +3,7 @@
 BASE=$(pwd)
 
 # home
-for rc in *rc zsh* tmux.conf; do
+for rc in *rc zsh* tmux.conf gitconfig; do
   mkdir -pv backup
   rcpath=~/."$rc"
   [ -e "$rcpath" ] && mv -v "$rcpath" backup/."$rc"

@@ -1,0 +1,14 @@
+[user]
+	email = benj.ledesma@gmail.com
+	name = Benj Ledesma
+[alias]
+	mergeup = !git fetch upstream && git merge upstream/`git rev-parse --abbrev-ref HEAD` && git push
+  bigblame = !"f() { git ls-tree -r -z --name-only HEAD -- $@ | xargs -0 -n1 git blame  --line-porcelain HEAD |grep  \"^author \"|sort|uniq -c|sort -nr; }; f"
+[github]
+	user = ledesmablt
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
+[commit]
+	verbose = true
+[core]
+  hooksPath = ~/.config/git/hooks

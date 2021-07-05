@@ -84,6 +84,8 @@ let g:vimwiki_list = [{
       \ ]
 
 " other
+let g:NERDTreeWinSize = 30
+let g:undotree_SplitWidth = g:NERDTreeWinSize
 let g:highlightedyank_highlight_duration = 400
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:ft_man_no_sect_fallback = 1

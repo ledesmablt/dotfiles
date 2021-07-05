@@ -68,3 +68,9 @@ inoremap <silent> <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <silent> <F4> <C-\><C-n>:Nuake<CR>
 nnoremap <silent> dga :diffget //2<CR>
 nnoremap <silent> dgl :diffget //3<CR>
+
+augroup Mappings
+  autocmd!
+  autocmd FileType nerdtree nnoremap <silent> <leader>u :NERDTreeClose<CR>:UndotreeToggle<CR>:UndotreeFocus<CR>
+  autocmd FileType undotree nnoremap <silent> <leader>e :UndotreeHide<CR>:NERDTreeToggle<CR>
+augroup END

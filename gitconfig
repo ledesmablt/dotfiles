@@ -11,4 +11,4 @@
 [commit]
 	verbose = true
 [core]
-  hooksPath = ~/.config/git/hooks
+	autocrlf = false

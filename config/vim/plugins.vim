@@ -15,6 +15,7 @@ Plug 'Lenovsky/nuake', {'on': 'Nuake'}
 Plug 'dbeniamine/cheat.sh-vim', {'on': 'HowIn'}
 
 " editing
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'

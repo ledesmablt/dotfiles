@@ -73,7 +73,7 @@ let g:fzf_action = {
 
 function! FindFileInParents(filename)
   let cwd = getcwd()
-  while cwd != $HOME
+  while cwd != $HOME && cwd != '/'
     let filepath = cwd.'/'.a:filename
     if filereadable(filepath)
       return filepath
@@ -81,4 +81,46 @@ function! FindFileInParents(filename)
     let cwd = fnamemodify(cwd, ':h')
   endwhile
   return ''
+endfunction
+
+command! -nargs=0 Jumps call <SID>jumps_to_qf()
+function! s:jumps_to_qf()
+   redir => raw
+   silent jumps
+   redir END
+python3 << EOF
+import os
+import re
+import vim
+jumplist = vim.eval("raw").split("\n")
+jumpcols = jumplist[1]
+filestart = jumpcols.find('file/text')
+def format_row(row):
+  matches = re.findall('\d+', row)[:3]
+  if len(matches) < 3:
+    return
+  _, line, col = matches
+  filename = row[filestart:].strip()
+  filename = re.sub('^~', os.environ['HOME'], filename)
+  if not os.path.exists(filename):
+    return
+  return {
+    "col": col,
+    "filename": filename,
+    "lnum": line
+  }
+formatted_jumplist = [format_row(i) for i in jumplist[2:]]
+qflist = [i for i in formatted_jumplist if i]
+EOF
+  let qf_output = py3eval("qflist")
+  call setqflist(qf_output)
+  copen
+endfunction
+
+command! -nargs=0 Cleanup call <SID>cleanup_buffers()
+function! s:cleanup_buffers()
+  let curr = bufnr("%")
+  let last = bufnr("$")
+  if curr > 1    | silent! execute "1,".(curr-1)."bd"     | endif
+  if curr < last | silent! execute (curr+1).",".last."bd" | endif
 endfunction

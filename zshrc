@@ -21,12 +21,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=( \
   git gitfast tmux \
   docker docker-compose fzf gcloud aws \
-  yarn nvm pip gem bundler rails rvm golang \
+  yarn npm nvm pip gem bundler rails rvm golang \
   urltools \
 )
 
 source $ZSH/oh-my-zsh.sh
-# export MANPATH="/usr/local/man:$MANPATH"
 
 ### settings
 # lscolors fix
@@ -40,10 +39,6 @@ compinit
 # use extendedglob
 setopt extendedglob
 
-### init services (wsl)
-# cron
-[[ `pgrep --exact cron` ]] || sudo service cron start > /dev/null
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -55,4 +50,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

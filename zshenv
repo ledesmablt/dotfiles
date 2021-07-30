@@ -27,7 +27,7 @@ alias ww="vim +VimwikiIndex"
 alias todo="vim +VimwikiIndex -c 'VimwikiGoto todo'"
 
 # load other zshenvs
-for f in $(ls -a | grep ".zshenv.")
+for f in $(ls -a $HOME | grep ".zshenv.")
 do
-  source $f
+  source $HOME/$f
 done

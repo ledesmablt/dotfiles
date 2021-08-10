@@ -4,7 +4,8 @@ command! ERC :exec 'e '.$MYVIMRC
 command! RRC :exec 'source '.$MYVIMRC.' <Bar> call lightline#update()'
 command! CDF :cd %:p:h
 command Rest :e ~/.rest
-command! Q mksession | q
+command! Q :q
+command! Find :NERDTreeFind
 
 
 """ mapping-related functions
@@ -109,7 +110,9 @@ def format_row(row):
     "filename": filename,
     "lnum": line
   }
-formatted_jumplist = [format_row(i) for i in jumplist[2:]]
+jumplist = jumplist[2:]
+jumplist.reverse()
+formatted_jumplist = [format_row(i) for i in jumplist]
 qflist = [i for i in formatted_jumplist if i]
 EOF
   let qf_output = py3eval("qflist")
@@ -117,10 +120,11 @@ EOF
   copen
 endfunction
 
-command! -nargs=0 Cleanup call <SID>cleanup_buffers()
-function! s:cleanup_buffers()
-  let curr = bufnr("%")
-  let last = bufnr("$")
-  if curr > 1    | silent! execute "1,".(curr-1)."bd"     | endif
-  if curr < last | silent! execute (curr+1).",".last."bd" | endif
+command! -nargs=0 -bang Cleanup call <SID>cleanup_buffers("<bang>")
+function! s:cleanup_buffers(...)
+  norm m0
+  silent exec "w | %bd".a:1." | e#"
+  norm '0
+  silent exec "bd #"
+  norm zz
 endfunction

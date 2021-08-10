@@ -16,6 +16,12 @@ nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
 nnoremap <silent> <leader>t oi<C-R>=
 vnoremap <silent> <leader>p "_dp<CR>
 vnoremap <silent> <leader>P "_dP<CR>
+nnoremap Y y$
+
+" navigation
+" add to jumplist if jumping > 5 lines
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
 " windows
 nnoremap <silent> <leader>h :wincmd h<CR>

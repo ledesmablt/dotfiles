@@ -15,6 +15,9 @@ let g:coc_global_extensions = [
       \ 'coc-prettier',
       \ 'coc-yaml',
       \ 'coc-docker',
+      \ 'coc-svelte',
+      \ 'coc-prisma',
+      \ 'https://github.com/rodrigore/coc-tailwind-intellisense'
       \ ]
 
 " Some servers have issues with backup files, see #649.

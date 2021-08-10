@@ -1,12 +1,15 @@
 {
+  "suggest.enablePreview": true,
   "python.pythonPath": "/usr/bin/python3",
   "solargraph.useBundler": false,
   "solargraph.checkGemVersion": false,
+  "solargraph.commandPath": "/home/benj/.rvm/gems/ruby-3.0.0/bin/solargraph",
   "eslint.validate": [
-    "javascript", "javascriptreact", "typescript", "typescriptreact"
+    "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte"
   ],
   "coc.preferences.formatOnSaveFiletypes": [
-    "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql"
+    "typescript", "typescriptreact", "graphql", "svelte",
+    "javascript", "javascriptreact"
   ],
   "prettier.endOfLine": "auto",
   "languageserver": {
@@ -15,5 +18,11 @@
       "args": ["server", "-m", "stream"],
       "filetypes": ["typescript", "typescriptreact", "graphql"]
     }
-  }
+  },
+  "tailwindCSS.includeLanguages": {
+    "svelte": "html",
+    "typescriptreact": "javascript",
+    "html": "html"
+  },
+  "prisma.prismaFmtBinPath": ""
 }

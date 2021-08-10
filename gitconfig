@@ -12,3 +12,5 @@
 	verbose = true
 [core]
 	autocrlf = false
+[pager]
+	branch = false

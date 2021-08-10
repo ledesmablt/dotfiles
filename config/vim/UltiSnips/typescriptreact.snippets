@@ -1,0 +1,32 @@
+extends typescript
+
+global !p
+def makeFirstUpper(text):
+	if len(text) == 0:
+		return ''
+	return text[0].upper() + text[1:]
+endglobal
+
+snippet "(React\.)?useState" "useState hook" br
+const [${1:name}, set`!p snip.rv = makeFirstUpper(t[1])`] = `!p
+snip.rv = "" if not match.group(1) else match.group(1) 
+`useState(${2:/* val */})
+endsnippet
+
+snippet useEffect "useEffect hook" i
+useEffect(() => {
+  ${1:// code}
+}, [${2:/* deps */}])
+endsnippet
+
+snippet <> "JSX tag"
+<${1:TagName}></$1>
+endsnippet
+
+snippet react "React boilerplate"
+import React, { ReactElement } from 'react'
+
+export default function `!p snip.rv=snip.basename`(): ReactElement {
+	return (${2:<div/>})
+}
+endsnippet

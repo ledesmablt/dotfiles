@@ -37,8 +37,10 @@ nnoremap <silent> <M-]> :resize +2<CR>
 if has('nvim')
   tnoremap <silent> <C-W> <C-\><C-N><C-W>
 endif
-nnoremap <silent> <C-J> :cn<CR>
-nnoremap <silent> <C-K> :cp<CR>
+nnoremap <silent> <C-j> :cn<CR>
+nnoremap <silent> <C-k> :cp<CR>
+nnoremap <silent> <M-j> :colder<CR>
+nnoremap <silent> <M-k> :cnewer<CR>
 
 " utility
 nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>

@@ -5,11 +5,20 @@
   "solargraph.checkGemVersion": false,
   "solargraph.commandPath": "/home/benj/.rvm/gems/ruby-3.0.0/bin/solargraph",
   "eslint.validate": [
-    "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte"
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "svelte"
   ],
   "coc.preferences.formatOnSaveFiletypes": [
-    "typescript", "typescriptreact", "graphql", "svelte",
-    "javascript", "javascriptreact"
+    "typescript",
+    "typescriptreact",
+    "graphql",
+    "svelte",
+    "javascript",
+    "javascriptreact",
+    "json"
   ],
   "prettier.endOfLine": "auto",
   "languageserver": {

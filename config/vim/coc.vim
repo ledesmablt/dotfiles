@@ -5,7 +5,7 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-json',
       \ 'coc-sh',
-      \ 'coc-python',
+      \ 'coc-pyright',
       \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-emmet',
@@ -41,8 +41,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Diagnostics list & navigation.
 nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -61,7 +61,7 @@ vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-cursor)
 
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>q  <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -141,3 +141,6 @@ if len(coc_settings_override)
   " update CocConfig file if coc-settings.json exists in parents
   let g:coc_config_home = fnamemodify(coc_settings_override, ':h')
 endif
+
+" coc-pyright find project root
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']

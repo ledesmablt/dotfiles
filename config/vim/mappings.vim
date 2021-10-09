@@ -16,6 +16,15 @@ nnoremap <silent> <leader>t oi<C-R>=
 vnoremap <silent> <leader>p "_dp<CR>
 vnoremap <silent> <leader>P "_dP<CR>
 nnoremap Y y$
+inoremap <silent> ( ()<ESC>i
+inoremap <silent> { {}<ESC>i
+inoremap <silent> [ []<ESC>i
+inoremap <silent> <M-h> <C-o>h
+inoremap <silent> <M-l> <C-o>l
+inoremap <silent> <M-w> <C-o>w
+inoremap <silent> <M-b> <C-o>b
+inoremap <silent> <M-W> <C-o>W
+inoremap <silent> <M-B> <C-o>B
 
 " navigation
 " add to jumplist if jumping > 5 lines

@@ -10,4 +10,10 @@
 [pager]
 	branch = false
 [pull]
-	rebase = true
+	rebase = false
+[alias]
+	root = rev-parse --show-toplevel
+	gh = !gh
+	pr = !gh pr checkout
+[init]
+	defaultBranch = master

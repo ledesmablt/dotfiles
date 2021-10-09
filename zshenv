@@ -23,6 +23,8 @@ alias rg="rg -p"
 alias sp="spotify"
 alias ww="vim +VimwikiIndex"
 alias todo="vim +VimwikiIndex -c 'VimwikiGoto todo'"
+alias tsk="tmux send-keys -t"
+alias pr="gh pr checkout"
 
 # load other zshenvs
 for f in $(ls -a $HOME | grep ".zshenv.")

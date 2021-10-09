@@ -34,9 +34,6 @@ Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'mattn/emmet-vim'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'pantharshit00/vim-prisma'
-if has('nvim')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-endif
 
 " aesthetics
 Plug 'junegunn/goyo.vim'
@@ -69,9 +66,7 @@ let g:lightline = {'colorscheme': 'dogrun',
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let $FZF_DEFAULT_OPTS = '--reverse --bind ctrl-a:select-all'
-if v:version >= 802
-  let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-endif
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
 " ripgrep
 let g:rg_derive_root = 'true'
@@ -93,7 +88,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:ft_man_no_sect_fallback = 1
 let g:run_autosave_logs = 1
 let g:run_quiet_default = 1
-let g:run_use_loclist = 1
 let g:vrc_response_default_content_type = 'application/json'
 let g:vrc_curl_opts = {'-s': ''}
 let g:peekaboo_delay = 1200
@@ -105,12 +99,4 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " nvim only
 if has('nvim')
   let g:run_nostream_default = 1
-	lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-  },
-}
-EOF
 endif

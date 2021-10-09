@@ -9,7 +9,6 @@ augroup FTMappings
 augroup END
 
 " editing
-nnoremap <silent> <leader>? :Maps<CR>
 nnoremap <silent> <leader><Tab> <C-^>
 nnoremap <silent> <leader>p :set paste!<CR>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
@@ -39,8 +38,8 @@ if has('nvim')
 endif
 nnoremap <silent> <C-j> :cn<CR>
 nnoremap <silent> <C-k> :cp<CR>
-nnoremap <silent> <M-j> :colder<CR>
-nnoremap <silent> <M-k> :cnewer<CR>
+nnoremap <silent> <M-j> :cnewer<CR>
+nnoremap <silent> <M-k> :colder<CR>
 
 " utility
 nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>
@@ -60,14 +59,41 @@ nnoremap <silent> <leader>n :call ShowFileRelpath()<CR>
 " plugins
 imap <silent> <C-l> <C-y>,
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :Files .<CR>
-nnoremap <silent> <leader>gf :GitFiles<CR>
-nnoremap <silent> <leader>m :Marks<CR>
-nnoremap <silent> <leader>ss :Ag<CR>
-nnoremap <silent> <leader>sf :History<CR>
-nnoremap <silent> <leader>sh :History:<CR>
+
+if has('nvim')
+  " git
+  nnoremap <silent> <leader>gf :Telescope git_files<CR>
+  nnoremap <silent> <leader>gb :Telescope git_branches<CR>
+  nnoremap <silent> <leader>gg :Telescope git_status<CR>
+
+  " files
+  nnoremap <silent> <leader>f :Telescope find_files<CR>
+  " nnoremap <silent> <leader>ss :Telescope live_grep<CR>
+  nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<CR>
+  nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>
+
+  " etc
+  nnoremap <silent> <leader>sw :Telescope tmux windows<CR>
+  nnoremap <silent> <leader>sh :Telescope command_history<CR>
+  " nnoremap <silent> <leader>sr :Telescope registers<CR>
+  nnoremap <silent> <leader>? :Telescope keymaps<CR>
+  nnoremap <silent> <leader>m :Telescope marks<CR>
+
+  " inoremap <silent> <C-a> <C-O>Telescope registers<CR>
+
+else
+  " fzf
+  " nnoremap <silent> <leader>f :Files .<CR>
+  nnoremap <silent> <leader>gf :GitFiles<CR>
+  nnoremap <silent> <leader>m :Marks<CR>
+  nnoremap <silent> <leader>sh :History:<CR>
+  nnoremap <silent> <leader>? :Maps<CR>
+endif
 nnoremap <silent> <leader>sn :Snippets<CR>
+nnoremap <silent> <leader>sf :History<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>ss :Ag<CR>
+
 nnoremap <silent> <leader>c :Commentary<CR>
 vnoremap <silent> <leader>c :Commentary<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>

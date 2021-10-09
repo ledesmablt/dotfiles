@@ -22,7 +22,7 @@ plugins=( \
   git gitfast tmux \
   docker docker-compose fzf gcloud aws \
   yarn npm nvm pip gem bundler rails rvm golang \
-  urltools \
+  gh urltools \
 )
 
 source $ZSH/oh-my-zsh.sh

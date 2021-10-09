@@ -42,10 +42,13 @@ augroup END
 
 augroup NVIM
   if has('nvim')
+    autocmd!
     autocmd TermOpen * startinsert
     autocmd TermEnter * setlocal nonu nornu
     autocmd TermLeave * setlocal nu rnu
     autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
+
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   endif
 augroup END
 
@@ -62,6 +65,9 @@ source ~/.config/vim/plugins.vim
 source ~/.config/vim/functions.vim
 source ~/.config/vim/mappings.vim
 source ~/.config/vim/coc.vim
+if has('nvim')
+  luafile ~/.config/nvim/lua/plugins.lua
+endif
 if filereadable($HOME.'/.config/vim/test-settings.vim')
   source ~/.config/vim/test-settings.vim
 endif

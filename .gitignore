@@ -1,3 +1,4 @@
 .netrwhist
 *test*.vim
 backup
+config/vim/plugin/*

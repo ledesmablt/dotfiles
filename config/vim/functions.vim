@@ -3,9 +3,10 @@
 command! ERC :exec 'e '.$MYVIMRC
 command! RRC :exec 'source '.$MYVIMRC.' <Bar> call lightline#update()'
 command! CDF :cd %:p:h
-command Rest :e ~/.rest
+command! Rest :e ~/.rest
 command! Q :q
-command! Find :NERDTreeFind
+command! Find :silent NERDTreeFind
+command! RS :silent CocRestart
 
 
 """ mapping-related functions

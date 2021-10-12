@@ -1,12 +1,14 @@
 """ functions
 """ one-liner commands
 command! ERC :exec 'e '.$MYVIMRC
-command! RRC :exec 'source '.$MYVIMRC.' <Bar> call lightline#update()'
+command! RRC exec 'source '.$MYVIMRC.' | call lightline#update() | PackerCompile'
 command! CDF :cd %:p:h
 command! Rest :e ~/.rest
 command! Q :q
+command! W :w
 command! Find :silent NERDTreeFind
-command! RS :silent CocRestart
+command! RS LspRestart
+command! Diff Gitsigns diffthis
 
 
 """ mapping-related functions

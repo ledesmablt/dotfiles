@@ -6,10 +6,19 @@ local _telescope = require('telescope.builtin')
 
 require('telescope').setup {
   defaults = {
+    dynamic_preview_title = true,
+    layout_strategy = "vertical",
+    sorting_strategy = "ascending",
     layout_config = {
       prompt_position = "top",
+      mirror = true,
+      preview_cutoff = 30,
     },
-    sorting_strategy = "ascending",
+    pickers = {
+      command_history = {
+        sorting_strategy = "descending",
+      },
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,

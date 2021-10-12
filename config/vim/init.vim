@@ -40,16 +40,17 @@ augroup SyntaxSettings
   autocmd FileType git set foldlevel=1
 augroup END
 
-augroup NVIM
-  if has('nvim')
+augroup NvimTerm
     autocmd!
     autocmd TermOpen * startinsert
     autocmd TermEnter * setlocal nonu nornu
     autocmd TermLeave * setlocal nu rnu
     autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
+augroup END
 
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  endif
+augroup ReloadConfig
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 augroup END
 
 
@@ -61,13 +62,11 @@ if exists('+termguicolors')
 endif
 
 " imports
-source ~/.config/vim/plugins.vim
-source ~/.config/vim/functions.vim
-source ~/.config/vim/mappings.vim
-source ~/.config/vim/coc.vim
-if has('nvim')
-  luafile ~/.config/nvim/lua/plugins.lua
-endif
-if filereadable($HOME.'/.config/vim/test-settings.vim')
-  source ~/.config/vim/test-settings.vim
+source ~/.config/nvim/plugins.vim
+source ~/.config/nvim/functions.vim
+source ~/.config/nvim/mappings.vim
+" source ~/.config/nvim/coc.vim
+luafile ~/.config/nvim/lua/plugins.lua
+if filereadable($HOME.'/.config/nvim/test-settings.vim')
+  source ~/.config/nvim/test-settings.vim
 endif

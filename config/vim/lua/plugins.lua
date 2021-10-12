@@ -1,9 +1,17 @@
+local function reload(name)
+  require('plenary.reload').reload_module(name, true)
+  return require(name)
+end
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- essentials
   use 'nvim-lua/plenary.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+  -- visuals
+  use { 'lewis6991/gitsigns.nvim', tag = 'release' }
 
   -- telescope
   use 'nvim-telescope/telescope.nvim'
@@ -12,9 +20,17 @@ return require('packer').startup(function()
 
   -- lsp
   use 'neovim/nvim-lspconfig'
+  use 'glepnir/lspsaga.nvim'
 
-  -- load configs
-  require('config/telescope')
-  require('config/treesitter')
+  -- completion
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
+
+  reload('config.cmp')
+  reload('config.gitsigns')
+  reload('config.lsp')
+  reload('config.telescope')
+  reload('config.treesitter')
 end)
-

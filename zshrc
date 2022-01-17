@@ -1,6 +1,10 @@
 ### zsh configs
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="pmcgee"
+if [[ -z $FLOATERM ]]; then
+  ZSH_THEME="pmcgee"
+else
+  ZSH_THEME="imajes"
+fi
 
 DISABLE_AUTO_TITLE="true"
 DISABLE_UPDATE_PROMPT="true"

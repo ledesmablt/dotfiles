@@ -15,5 +15,6 @@
 	root = rev-parse --show-toplevel
 	gh = !gh
 	pr = !gh pr checkout
+	can = "commit --amend --no-edit"
 [init]
 	defaultBranch = master

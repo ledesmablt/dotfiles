@@ -16,7 +16,7 @@ alias python="python3"
 alias pip="pip3"
 alias pydoc="python3 -m pydoc"
 alias src="source ~/.zshrc"
-alias erc="vim ~/.config/vim/init.vim -c 'cd ~/.config/vim'"
+alias erc="vim ~/.config/nvim/init.vim -c 'cd ~/.config/nvim'"
 alias vim="nvim"
 alias v="nvim"
 alias rg="rg -p"
@@ -25,6 +25,7 @@ alias ww="vim +VimwikiIndex"
 alias todo="vim +VimwikiIndex -c 'VimwikiGoto todo'"
 alias tsk="tmux send-keys -t"
 alias pr="gh pr checkout"
+alias rw="gh run watch"
 
 # load other zshenvs
 for f in $(ls -a $HOME | grep ".zshenv.")

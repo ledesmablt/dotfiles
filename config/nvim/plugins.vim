@@ -1,18 +1,14 @@
 """ plugin imports
 call plug#begin('~/.vim/plugged')
 " menus
-Plug 'vimwiki/vimwiki'
 Plug 'vim-utils/vim-man', {'on': 'Man'}
-Plug 'jremmen/vim-ripgrep', {'on': 'Rg'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'ledesmablt/vim-run'
 Plug 'junegunn/vim-peekaboo'
-Plug 'diepm/vim-rest-console', {'for': 'rest'}
-Plug 'Lenovsky/nuake', {'on': 'Nuake'}
-Plug 'dbeniamine/cheat.sh-vim', {'on': 'HowIn'}
 
 " editing
 Plug 'tpope/vim-abolish'
@@ -21,11 +17,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-unimpaired'
 Plug 'unblevable/quick-scope'
 Plug 'SirVer/ultisnips'
+Plug 'ThePrimeagen/harpoon'
 
 " lang
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
 Plug 'peitalin/vim-jsx-typescript', {'for': 'typescriptreact'}
 Plug 'jparise/vim-graphql', {'for': 'graphql'}
@@ -34,51 +32,20 @@ Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'pantharshit00/vim-prisma'
 
 " aesthetics
-Plug 'junegunn/goyo.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
 Plug 'wadackel/vim-dogrun'
 Plug 'embark-theme/vim'
 
 call plug#end()
 
 
-""" plugin settings
-" theme
-colo dogrun
-let g:lightline = {'colorscheme': 'dogrun',
-      \ 'active': {
-      \   'left': [
-      \       ['mode', 'paste'],
-      \       ['readonly', 'filename', 'modified']
-      \   ],
-      \   'right': [
-      \       [], ['filetype'], ['gitbranch']
-      \   ],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ }}
-
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let $FZF_DEFAULT_OPTS = '--reverse --bind ctrl-a:select-all'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.9 } }
-let g:fzf_preview_window = ['down:40%', 'ctrl-/']
+let g:fzf_preview_window = ['down:50%', 'ctrl-/']
 
-" ripgrep
-let g:rg_derive_root = 'true'
-let g:ctrlp_user_command = ['.git/',
-      \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
-      \ ]
-
-" vimwiki
-let g:vimwiki_list = [{
-      \ 'path': '~/.vim/wiki/raw', 'path_html': '~/.vim/wiki/html',
-      \ 'syntax': 'markdown', 'ext': '.md'}
-      \ ]
 
 " other
 let g:NERDTreeWinSize = 30

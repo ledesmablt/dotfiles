@@ -14,7 +14,7 @@ set lazyredraw
 set cmdheight=1
 set laststatus=2
 set noshowmode noshowcmd
-set colorcolumn=80
+" set colorcolumn=80
 set updatetime=300
 
 set path+=**
@@ -42,10 +42,10 @@ augroup END
 
 augroup NvimTerm
     autocmd!
-    autocmd TermOpen * startinsert
+    " autocmd TermOpen * startinsert
     autocmd TermEnter * setlocal nonu nornu
     autocmd TermLeave * setlocal nu rnu
-    autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
+    " autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
 augroup END
 
 augroup ReloadConfig
@@ -62,11 +62,10 @@ if exists('+termguicolors')
 endif
 
 " imports
+luafile ~/.config/nvim/lua/plugins.lua
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/mappings.vim
-" source ~/.config/nvim/coc.vim
-luafile ~/.config/nvim/lua/plugins.lua
 if filereadable($HOME.'/.config/nvim/test-settings.vim')
   source ~/.config/nvim/test-settings.vim
 endif

@@ -25,9 +25,8 @@ local on_attach = function(client, bufnr)
 
   -- navigation
   keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  keymap('n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', opts)
   keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+  keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({ entry_maker = require("config.telescope")._qf_as_filenames()})<CR>', opts)
   keymap('n', '<leader>gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
   -- diagnostics
@@ -148,6 +147,7 @@ local dls_formatFiletypes = {
   typescriptreact = "prettier",
   javascript = "prettier",
   javascriptreact = "prettier",
+  graphql = "prettier",
 }
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,

@@ -25,32 +25,8 @@ function! LeaderYW(is_entire_file)
   echo len(yankedlines).' lines yanked to clipboard'
 endfunction
 
-function! ShowFileRelpath()
-  let cwd = getcwd()
-  let fpath = substitute(expand('%:p'), cwd . '/' , '', '')
-  echo fpath
-endfunction
-
 
 """ command-related functions
-" diff 2 windows
-command! DiffThese :call <SID>diff_these()
-function! s:diff_these()
-  if &diff
-    diffoff!
-  elseif winnr('$') != 2
-    echohl WarningMsg | echo '2 windows must be open for diff' | echohl None
-    return
-  else
-    let currentwin = winnr()
-    let otherwin = currentwin == 2 ? 1 : 2
-    diffthis
-    exec otherwin.'wincmd w'
-    diffthis
-    exec currentwin.'wincmd w'
-  endif
-endfunction
-
 " wipe matching buffers
 command! -nargs=1 BW call <SID>wipe_matching_buffers('<args>')
 function! s:wipe_matching_buffers(pattern)

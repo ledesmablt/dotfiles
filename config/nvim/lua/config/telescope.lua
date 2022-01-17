@@ -1,6 +1,5 @@
-local pickers = require "telescope.pickers"
-local finders = require "telescope.finders"
-local conf = require("telescope.config").values
+local utils = require "telescope.utils"
+local entry_display = require "telescope.pickers.entry_display"
 local actions = require('telescope.actions')
 local _telescope = require('telescope.builtin')
 
@@ -29,7 +28,6 @@ require('telescope').setup {
       },
     },
   },
-  pickers = {},
   extensions = {}
 }
 
@@ -45,15 +43,48 @@ M.search_dotfiles = function()
   })
 end
 
--- test: not working??
-M.colors = function(opts)
-  pickers.new(opts, {
-    prompt_title = "colors",
-    finder = finders.new_table {
-      results = { "red", "green", "blue" }
+-- custom function for lsp_references entries
+M._qf_as_filenames = function (opts)
+  opts = opts or {}
+
+  local displayer = entry_display.create {
+    separator = "▏",
+    items = {
+      { width = 8 },
+      { width = 50 },
+      { remaining = true },
     },
-    sorter = conf.generic_sorter(opts),
-  }):find()
+  }
+
+  local make_display = function(entry)
+    local filename = utils.transform_path(opts, entry.filename)
+    local line_info = { table.concat({ entry.lnum, entry.col }, ":"), "TelescopeResultsLineNr" }
+
+    return displayer {
+      line_info,
+      filename,
+    }
+  end
+
+  return function(entry)
+    local filename = entry.filename or vim.api.nvim_buf_get_name(entry.bufnr)
+
+    return {
+      valid = true,
+
+      value = entry,
+      ordinal = (not opts.ignore_filename and filename or "") .. " " .. entry.text,
+      display = make_display,
+
+      bufnr = entry.bufnr,
+      filename = filename,
+      lnum = entry.lnum,
+      col = entry.col,
+      text = entry.text,
+      start = entry.start,
+      finish = entry.finish,
+    }
+  end
 end
 
 return M

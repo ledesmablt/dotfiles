@@ -45,7 +45,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_exec([[
       augroup LspAutocommands
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua local pos = vim.api.nvim_win_get_cursor(0); vim.lsp.buf.formatting_sync(); vim.cmd("$g/^$/d"); vim.api.nvim_win_set_cursor(0, pos)
+        autocmd BufWritePre <buffer> lua local pos = vim.api.nvim_win_get_cursor(0); vim.lsp.buf.formatting_sync(); vim.cmd("$g/^$/d"); if (pos[1] < vim.fn.line('$')) then vim.api.nvim_win_set_cursor(0, pos); end
       augroup END
     ]], true)
   end

@@ -107,3 +107,5 @@ function! s:cleanup_buffers(...)
   silent exec "bd #"
   norm zz
 endfunction
+
+command! -nargs=0 Format lua vim.lsp.buf.formatting_sync()

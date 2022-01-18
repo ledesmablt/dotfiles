@@ -79,13 +79,11 @@ nnoremap <silent> <leader>gg :Telescope git_status<CR>
 nnoremap <silent> <leader>f :Telescope find_files<CR>
 nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <silent> <leader>? :Telescope keymaps<CR>
+nnoremap <silent> <leader>b :Telescope buffers sort_mru=true<CR>
+nnoremap <silent> <leader>ss :Telescope grep_string<CR>
 nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>
-nnoremap <silent> <leader>ss :lua require('telescope.builtin').grep_string({ only_sort_text = true, search = '', path_display = { "smart" }})<CR>
-nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ ignore_current_buffer = true, sort_lastused = true })<CR>
-
-" TODO: convert to telescope
-nnoremap <silent> <leader>sf :History<CR>
-nnoremap <silent> <leader>sh :History:<CR>
+nnoremap <silent> <leader>sf :lua require('config.telescope').file_history()<CR>
+nnoremap <silent> <leader>sh :lua require('config.telescope').command_history()<CR>
 
 augroup Mappings
   autocmd!

@@ -2,8 +2,6 @@
 call plug#begin('~/.vim/plugged')
 " menus
 Plug 'vim-utils/vim-man', {'on': 'Man'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
@@ -40,14 +38,6 @@ Plug 'embark-theme/vim'
 call plug#end()
 
 
-" fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-let $FZF_DEFAULT_OPTS = '--reverse --bind ctrl-a:select-all'
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.9 } }
-let g:fzf_preview_window = ['down:50%', 'ctrl-/']
-
-
-" other
 let g:NERDTreeWinSize = 30
 let g:undotree_SplitWidth = g:NERDTreeWinSize
 let g:highlightedyank_highlight_duration = 400

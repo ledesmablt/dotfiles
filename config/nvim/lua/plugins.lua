@@ -41,7 +41,6 @@ return require('packer').startup(function()
   }
   use {
     'hrsh7th/nvim-cmp',
-    ensure_dependencies = true,
     requires = {
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-buffer'},
@@ -50,10 +49,21 @@ return require('packer').startup(function()
   }
 
   -- menus
+  use { 'ThePrimeagen/harpoon' }
   use {
     'nvim-telescope/telescope.nvim',
-    ensure_dependencies = true,
     requires = {{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }},
+  }
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require('octo').setup()
+    end
   }
   use {
     'voldikss/vim-floaterm',

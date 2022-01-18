@@ -19,7 +19,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'unblevable/quick-scope'
 Plug 'SirVer/ultisnips'
-Plug 'ThePrimeagen/harpoon'
 
 " lang
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
@@ -46,9 +45,7 @@ let g:ft_man_no_sect_fallback = 1
 let g:run_autosave_logs = 1
 let g:run_quiet_default = 1
 let g:run_nostream_default = 1
-let g:vrc_response_default_content_type = 'application/json'
-let g:vrc_curl_opts = {'-s': ''}
-let g:peekaboo_delay = 1200
+let g:peekaboo_delay = 900
 let g:UltiSnipsEnableSnipMate = 0
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger="<c-j>"

@@ -22,13 +22,14 @@ require('telescope').setup {
         sorting_strategy = "descending",
       },
       grep_string = {
-        search = '',
         only_sort_text = true,
         path_display = { "smart" },
+        -- search = '' doesn't work
       },
       buffers = {
         ignore_current_buffer = true,
         sort_lastused = true,
+        -- sort_mru = true doesn't work
       }
     },
     mappings = {

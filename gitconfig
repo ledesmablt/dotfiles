@@ -7,6 +7,7 @@
 	verbose = true
 [core]
 	autocrlf = input
+	excludesFile = ~/.gitignore_global
 [pager]
 	branch = false
 [pull]

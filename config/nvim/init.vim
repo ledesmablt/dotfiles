@@ -50,7 +50,7 @@ augroup END
 
 augroup ReloadConfig
   autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  autocmd BufWritePost */nvim/lua/** source <afile> | PackerCompile
 augroup END
 
 

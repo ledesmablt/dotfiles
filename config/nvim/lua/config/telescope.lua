@@ -5,7 +5,6 @@ local _telescope = require('telescope.builtin')
 local pickers = require('telescope.pickers')
 local sorters = require('telescope.sorters')
 local finders = require('telescope.finders')
-local conf = require('telescope.config').values
 
 require('telescope').setup {
   defaults = {
@@ -22,6 +21,7 @@ require('telescope').setup {
         sorting_strategy = "descending",
       },
       grep_string = {
+        prompt_title = "Find Word",
         only_sort_text = true,
         path_display = { "smart" },
         -- search = '' doesn't work

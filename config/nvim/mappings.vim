@@ -81,8 +81,8 @@ nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <silent> <leader>? :Telescope keymaps<CR>
 nnoremap <silent> <leader>b :Telescope buffers sort_mru=true<CR>
 nnoremap <silent> <leader>ss :Telescope grep_string search=""<CR>
+nnoremap <silent> <leader>sf :Telescope oldfiles<CR>
 nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>
-nnoremap <silent> <leader>sf :lua require('config.telescope').file_history()<CR>
 nnoremap <silent> <leader>sh :lua require('config.telescope').command_history()<CR>
 
 augroup Mappings

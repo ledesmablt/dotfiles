@@ -5,10 +5,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export EDITOR=nvim
 export GOPATH="$HOME/.go"
 
-export PATH="$PATH:$GOPATH"
+export PATH="$PATH:$GOPATH/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/scripts"
+
 
 # aliases (must be here to work in vim :! mode)
 alias so=source
@@ -21,14 +22,8 @@ alias vim="nvim"
 alias v="nvim"
 alias rg="rg -p"
 alias sp="spotify"
-alias ww="vim +VimwikiIndex"
-alias todo="vim +VimwikiIndex -c 'VimwikiGoto todo'"
 alias tsk="tmux send-keys -t"
+alias t="tmux"
 alias pr="gh pr checkout"
 alias rw="gh run watch"
 
-# load other zshenvs
-for f in $(ls -a $HOME | grep ".zshenv.")
-do
-  source $HOME/$f
-done

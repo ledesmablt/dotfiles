@@ -2,7 +2,7 @@ local cmp = require('cmp')
 
 vim.o.completeopt = "menu,menuone,noselect"
 cmp.setup {
-  mapping = {
+  mapping = cmp.mapping.preset.insert{
     ['<C-f>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -11,7 +11,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
     }),
   },
-  sources = {
+  sources = cmp.config.sources{
     -- { name = 'ultisnips' },
     -- { name = 'buffer' },
     { name = 'nvim_lsp' },
@@ -25,6 +25,6 @@ cmp.setup {
     keyword_length = 3,
   },
   experimental = {
-    -- ghost_text = cmp.GhostTextConf,
+    ghost_text = true,
   },
 }

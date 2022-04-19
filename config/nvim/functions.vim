@@ -11,21 +11,6 @@ command! RS LspRestart
 command! Diff Gitsigns diffthis
 
 
-""" mapping-related functions
-function! LeaderYW(is_entire_file)
-  let clipfile = '/tmp/clip'
-  if a:is_entire_file
-    let yankedlines = getbufline('%', 1, '$')
-  else
-    let yankedlines = split(@0, "\n")
-  endif
-  call writefile(yankedlines, clipfile)
-  call system('cat '.clipfile.' | clip.exe')
-  messages clear
-  echo len(yankedlines).' lines yanked to clipboard'
-endfunction
-
-
 """ command-related functions
 " wipe matching buffers
 command! -nargs=1 BW call <SID>wipe_matching_buffers('<args>')

@@ -32,7 +32,8 @@ return require('packer').startup(function()
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = "maintained",
+        ensure_installed = "all",
+        ignore_install = { "phpdoc" }, -- buggy
         highlight = {
           enable = true,
         },
@@ -52,7 +53,10 @@ return require('packer').startup(function()
   use { 'ThePrimeagen/harpoon' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }},
+    requires = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      { 'gbrlsnchs/telescope-lsp-handlers.nvim' },
+    },
   }
   use {
     'pwntester/octo.nvim',

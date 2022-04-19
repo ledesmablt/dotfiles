@@ -27,10 +27,11 @@ local on_attach = function(client, bufnr)
   keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({ entry_maker = require("config.telescope")._qf_as_filenames()})<CR>', opts)
+  keymap('n', 'gs', '<cmd>lua require("config.telescope").workspace_symbols_with_input()<CR>', opts)
   keymap('n', '<leader>gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
   -- diagnostics
-  keymap('n', '<leader>d', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
+  keymap('n', '<leader>d', '<cmd>Telescope diagnostics<CR>', opts)
   keymap('n', '<leader>c', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev({ enable_popup = false })<CR>', opts)
   keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next({ enable_popup = false })<CR>', opts)
@@ -67,7 +68,7 @@ local flags = {
 -- setup for most servers
 local simple_servers = {
   'bashls', 'cssls', 'dockerls', 'html', 'jsonls', 'prismals',
-  'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls',
+  'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls', 'golangci_lint_ls', 'gopls'
 }
 for _, lsp in ipairs(simple_servers) do
   nvim_lsp[lsp].setup {

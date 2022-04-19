@@ -46,6 +46,7 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('lsp_handlers')
 
 -- custom functions
 
@@ -55,6 +56,14 @@ M.search_dotfiles = function()
     prompt_title = "Dotfiles",
     cwd = "~/projects/dotfiles"
   })
+end
+
+M.workspace_symbols_with_input = function()
+  vim.ui.input('Search for a workspace symbol: ', function(input)
+    _telescope.lsp_workspace_symbols({
+      query = input
+    })
+  end)
 end
 
 -- ripped from builtin.command_history but with a different sorter

@@ -66,6 +66,4 @@ luafile ~/.config/nvim/lua/plugins.lua
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/mappings.vim
-if filereadable($HOME.'/.config/nvim/test-settings.vim')
-  source ~/.config/nvim/test-settings.vim
-endif
+source ~/.config/nvim/budget_startify.vim

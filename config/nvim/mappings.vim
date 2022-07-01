@@ -38,8 +38,9 @@ vnoremap <silent> <C-_> :Commentary<CR>
 " add to jumplist if jumping > 5 lines
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
-nnoremap <silent> - :NERDTreeFind<CR>
-nnoremap <silent> _ :NERDTreeCWD<CR>
+nnoremap <silent> - :CHADopen --always-focus<CR>
+" nnoremap <silent> - :NERDTreeFind<CR>
+" nnoremap <silent> _ :NERDTreeCWD<CR>
 nnoremap <silent> + :FloatermNew<CR>
 
 " windows
@@ -60,22 +61,20 @@ nnoremap <silent> <M-j> :cnewer<CR>
 nnoremap <silent> <M-k> :colder<CR>
 
 " utility
-nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>
+nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>:set nu rnu<CR>
 nnoremap <silent> <leader>td :VimwikiIndex<CR> :VimwikiGoto todo<CR>
 nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>
 vnoremap <silent> <leader>@ "0y:!xdg-open <C-R>0<CR>
 
 " plugins
 imap <silent> <C-l> <C-y>,
-nnoremap <silent> <leader>e :NERDTreeToggle<CR>
+nnoremap <silent> <leader>e :CHADopen<CR>
+" nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> dga :diffget //2<CR>
 nnoremap <silent> dgl :diffget //3<CR>
 nnoremap <silent> [t :FloatermPrev<CR>
 nnoremap <silent> ]t :FloatermNext<CR>
-
-nnoremap <silent> <leader>gm :lua require('harpoon.mark').add_file(); require('harpoon.ui').toggle_quick_menu()<CR>
-nnoremap <silent> <leader>m :lua require('harpoon.ui').toggle_quick_menu()<CR>
 
 " search
 nnoremap <silent> <leader>gf :Telescope git_files<CR>

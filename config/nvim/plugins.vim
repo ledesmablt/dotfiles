@@ -15,14 +15,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'unblevable/quick-scope'
 Plug 'SirVer/ultisnips'
 
 " lang
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
-Plug 'peitalin/vim-jsx-typescript', {'for': 'typescriptreact'}
 Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'mattn/emmet-vim'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
@@ -30,7 +29,7 @@ Plug 'pantharshit00/vim-prisma'
 
 " aesthetics
 Plug 'machakann/vim-highlightedyank'
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
 Plug 'wadackel/vim-dogrun'
 Plug 'embark-theme/vim'
 

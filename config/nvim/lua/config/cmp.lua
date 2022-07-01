@@ -10,11 +10,22 @@ cmp.setup {
       select = true,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
+    ['<Tab>'] = cmp.mapping.confirm({
+      select = true,
+      behavior = cmp.ConfirmBehavior.Replace,
+    }),
   },
   sources = cmp.config.sources{
     -- { name = 'ultisnips' },
     -- { name = 'buffer' },
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
+  },
+  formatting = {
+    format = require('lspkind').cmp_format({
+      mode = 'symbol_text',
+      maxWidth = 50
+    })
   },
   snippet = {
     expand = function(args)

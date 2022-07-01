@@ -28,6 +28,10 @@ return require('packer').startup(function()
   -- lang & completion
   use 'neovim/nvim-lspconfig'
   use {
+    'jose-elias-alvarez/nvim-lsp-ts-utils',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
@@ -45,17 +49,33 @@ return require('packer').startup(function()
     requires = {
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-nvim-lsp-signature-help'},
       {'quangnguyen30192/cmp-nvim-ultisnips'},
+      {'onsails/lspkind.nvim'},
     }
+  }
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function ()
+      require('colorizer').setup()
+    end
   }
 
   -- menus
   use { 'ThePrimeagen/harpoon' }
   use {
+    'SmiteshP/nvim-gps',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-gps').setup()
+    end
+  }
+  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       { 'gbrlsnchs/telescope-lsp-handlers.nvim' },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
     },
   }
   use {
@@ -67,6 +87,26 @@ return require('packer').startup(function()
     },
     config = function()
       require('octo').setup()
+    end
+  }
+  use {
+    'ms-jpq/chadtree',
+    run = ':CHADdeps',
+    requires = { 'arcticicestudio/nord-dircolors' },
+    config = function()
+      vim.api.nvim_set_var("chadtree_settings", {
+        ["keymap.change_dir"] = { "B" },
+        ["keymap.refresh"] = { "<c-r>", "R" },
+        ["keymap.primary"] = { "<enter>", "o" },
+        ["keymap.h_split"] = { "go" },
+        ["keymap.v_split"] = {},
+        ["keymap.open_sys"] = { "O" },
+        ["view.width"] = 35,
+        ["view.window_options"] = {
+          ["number"] = true,
+          ["relativenumber"] = true,
+        },
+      })
     end
   }
   use {

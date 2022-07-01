@@ -27,7 +27,8 @@ local on_attach = function(client, bufnr)
   keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({ entry_maker = require("config.telescope")._qf_as_filenames()})<CR>', opts)
-  keymap('n', 'gs', '<cmd>lua require("config.telescope").workspace_symbols_with_input()<CR>', opts)
+  -- keymap('n', 'gs', '<cmd>lua require("config.telescope").workspace_symbols_with_input()<CR>', opts)
+  keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
   keymap('n', '<leader>gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
   -- diagnostics
@@ -38,8 +39,8 @@ local on_attach = function(client, bufnr)
 
   -- actions
   keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  keymap('n', '<leader>q', '<cmd>Telescope lsp_code_actions<CR>', opts)
-  keymap('n', '<leader>a', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  keymap('n', '<space>rm', '<cmd>TSLspRenameFile<CR>', opts)
+  keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
   -- auto formatting & delete trailing newline
   if client.resolved_capabilities.document_formatting then
@@ -79,17 +80,23 @@ end
 
 -- ts + gql
 nvim_lsp.tsserver.setup {
-  on_attach = function(client)
+  init_options = require('nvim-lsp-ts-utils').init_options,
+  on_attach = function(client, bufnr)
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup {
+      auto_inlay_hints = false,
+      always_organize_imports = false,
+    }
     -- let diagnosticls (setup below) handle the formatting
     client.resolved_capabilities.document_formatting = false
-    on_attach(client)
+    on_attach(client, bufnr)
   end,
   flags = flags,
 }
 nvim_lsp.graphql.setup {
   on_attach = on_attach,
   flags = flags,
-  filetypes = { 'graphql', 'typescript' },
+  filetypes = { 'graphql', 'typescript', 'typescriptreact' },
 }
 
 -- luals

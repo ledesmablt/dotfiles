@@ -42,11 +42,16 @@ require('telescope').setup {
       },
     },
   },
-  extensions = {}
+  extensions = {
+    ["ui-select"] = {
+      require('telescope.themes').get_dropdown {}
+    }
+  }
 }
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('lsp_handlers')
+require('telescope').load_extension('ui-select')
 
 -- custom functions
 

@@ -38,4 +38,8 @@ cmp.setup {
   experimental = {
     ghost_text = true,
   },
+  performance = {
+    debounce = 200,
+    throttle = 100,
+  },
 }

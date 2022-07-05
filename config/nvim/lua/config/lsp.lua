@@ -11,6 +11,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 -- keybindings
 local on_attach = function(client, bufnr)
   require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  if client.server_capabilities.colorProvider then
+    require('config.lsp-documentcolors').buf_attach(bufnr)
+  end
 
   -- helpers
   local opts = { noremap=true, silent=true }

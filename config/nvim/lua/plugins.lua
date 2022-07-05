@@ -24,9 +24,38 @@ return require('packer').startup(function()
       }
     end
   }
+  use {
+    'anuvyklack/hydra.nvim',
+    config = function()
+      local Hydra = require('hydra')
+      Hydra({
+        name = 'Windows',
+        mode = 'n',
+        body = '<C-w>',
+        heads = {
+          { 'h', '<C-w>h' },
+          { 'j', '<C-w>j' },
+          { 'k', '<C-w>k' },
+          { 'l', '<C-w>l' },
+
+          { 'H', ':vnew<CR>' },
+          { 'J', ':below new<CR>' },
+          { 'K', ':new<CR>' },
+          { 'L', ':below vnew<CR>' },
+
+          { '[', ':resize -2<CR>' },
+          { ']', ':resize +2<CR>' },
+          { '{', ':vertical resize -2<CR>' },
+          { '}', ':vertical resize +2<CR>' },
+          { 'q', '<C-w>q' },
+        }
+      })
+    end
+  }
 
   -- lang & completion
   use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
   use {
     'jose-elias-alvarez/nvim-lsp-ts-utils',
     requires = 'nvim-lua/plenary.nvim'

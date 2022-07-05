@@ -66,6 +66,9 @@ local flags = {
 }
 
 
+-- setup with lspinstall
+local lspinstall = require('nvim-lsp-installer')
+lspinstall.setup()
 -- setup for most servers
 local simple_servers = {
   'bashls', 'cssls', 'dockerls', 'html', 'jsonls', 'prismals',

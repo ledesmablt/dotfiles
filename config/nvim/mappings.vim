@@ -84,6 +84,7 @@ nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <silent> <leader>? :Telescope keymaps<CR>
 nnoremap <silent> <leader>b :Telescope buffers sort_mru=true ignore_current_buffer=true<CR>
 nnoremap <silent> <leader>ss :Telescope grep_string search=""<CR>
+nnoremap <silent> <leader>sg :Telescope live_grep<CR>
 nnoremap <silent> <leader>sq :Telescope quickfix<CR>
 nnoremap <silent> <leader>sf :Telescope oldfiles<CR>
 nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>

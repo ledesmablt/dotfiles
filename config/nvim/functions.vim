@@ -1,12 +1,8 @@
 """ functions
 """ one-liner commands
-command! ERC :exec 'e '.$MYVIMRC
-command! RRC exec 'source '.$MYVIMRC.' | call lightline#update() | PackerCompile'
 command! CDF :cd %:p:h
-command! Rest :e ~/.rest
 command! Q :q
 command! W :w
-command! Find :silent NERDTreeFind
 command! RS LspRestart
 command! Diff Gitsigns diffthis
 
@@ -22,66 +18,6 @@ function! s:wipe_matching_buffers(pattern)
     return
   endif
   exec 'bw '.join(matchlist, ' ')
-endfunction
-
-" CTRL-A CTRL-Q to select all and build quickfix list
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-function! FindFileInParents(filename)
-  let cwd = getcwd()
-  while cwd != $HOME && cwd != '/'
-    let filepath = cwd.'/'.a:filename
-    if filereadable(filepath)
-      return filepath
-    endif
-    let cwd = fnamemodify(cwd, ':h')
-  endwhile
-  return ''
-endfunction
-
-command! -nargs=0 Jumps call <SID>jumps_to_qf()
-function! s:jumps_to_qf()
-   redir => raw
-   silent jumps
-   redir END
-python3 << EOF
-import os
-import re
-import vim
-jumplist = vim.eval("raw").split("\n")
-jumpcols = jumplist[1]
-filestart = jumpcols.find('file/text')
-def format_row(row):
-  matches = re.findall('\d+', row)[:3]
-  if len(matches) < 3:
-    return
-  _, line, col = matches
-  filename = row[filestart:].strip()
-  filename = re.sub('^~', os.environ['HOME'], filename)
-  if not os.path.exists(filename):
-    return
-  return {
-    "col": col,
-    "filename": filename,
-    "lnum": line
-  }
-jumplist = jumplist[2:]
-jumplist.reverse()
-formatted_jumplist = [format_row(i) for i in jumplist]
-qflist = [i for i in formatted_jumplist if i]
-EOF
-  let qf_output = py3eval("qflist")
-  call setqflist(qf_output)
-  copen
 endfunction
 
 command! -nargs=0 -bang Cleanup call <SID>cleanup_buffers("<bang>")

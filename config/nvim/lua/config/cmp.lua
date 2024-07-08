@@ -27,11 +27,11 @@ cmp.setup {
       maxWidth = 50
     })
   },
-  snippet = {
-    expand = function(args)
-      vim.fn['UltiSnips#Anon'](args.body)
-    end
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     vim.fn['UltiSnips#Anon'](args.body)
+  --   end
+  -- },
   completion = {
     keyword_length = 3,
   },

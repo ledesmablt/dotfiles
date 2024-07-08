@@ -1,13 +1,6 @@
 """ mappings
 let mapleader = ' '
 
-" filetype-specific
-augroup FTMappings
-  autocmd!
-  autocmd Filetype man nnoremap <buffer> <silent> q :q<CR>
-  autocmd Filetype vimwiki vnoremap <buffer> <silent> <leader>l <ESC>`<i[<ESC>`>la]()<ESC>"*P0`<
-augroup END
-
 " editing
 nnoremap <silent> <leader><Tab> <C-^>
 nnoremap <silent> <leader>o i<CR><Esc>%a<CR>
@@ -39,8 +32,6 @@ vnoremap <silent> <C-_> :Commentary<CR>
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 nnoremap <silent> - :CHADopen --always-focus<CR>
-" nnoremap <silent> - :NERDTreeFind<CR>
-" nnoremap <silent> _ :NERDTreeCWD<CR>
 nnoremap <silent> + :FloatermNew<CR>
 
 " windows
@@ -60,16 +51,12 @@ nnoremap <silent> <C-k> :cp<CR>
 nnoremap <silent> <M-j> :cnewer<CR>
 nnoremap <silent> <M-k> :colder<CR>
 
-" utility
+" reset the screen
 nnoremap <silent> <leader><C-l> :e<CR>:redraw<CR>:set nu rnu<CR>
-nnoremap <silent> <leader>td :VimwikiIndex<CR> :VimwikiGoto todo<CR>
-nnoremap <silent> <leader>@ "0yiW:!xdg-open <C-R>0<CR>
-vnoremap <silent> <leader>@ "0y:!xdg-open <C-R>0<CR>
 
 " plugins
 imap <silent> <C-l> <C-y>,
 nnoremap <silent> <leader>e :CHADopen<CR>
-" nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> dga :diffget //2<CR>
 nnoremap <silent> dgl :diffget //3<CR>
@@ -89,9 +76,3 @@ nnoremap <silent> <leader>sq :Telescope quickfix<CR>
 nnoremap <silent> <leader>sf :Telescope oldfiles<CR>
 nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>
 nnoremap <silent> <leader>sh :lua require('config.telescope').command_history()<CR>
-
-augroup Mappings
-  autocmd!
-  autocmd FileType nerdtree nnoremap <silent> <leader>u :NERDTreeClose<CR>:UndotreeToggle<CR>:UndotreeFocus<CR>
-  autocmd FileType undotree nnoremap <silent> <leader>e :UndotreeHide<CR>:NERDTreeToggle<CR>
-augroup END

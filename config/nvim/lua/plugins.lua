@@ -4,65 +4,62 @@ local function reload(name)
 end
 
 return require('packer').startup(function()
+  -- this package manager
   use 'wbthomason/packer.nvim'
 
-  -- lua sugar
+  -- lua helpers required by a handful of packages
   use 'nvim-lua/plenary.nvim'
   use 'svermeulen/vimpeccable'
 
-  -- editing
+  -- git diff lines and other utilities
   use {
     'lewis6991/gitsigns.nvim',
-    tag = 'release',
     config = function ()
-      require('gitsigns').setup {
-        keymaps = {
-          ['n [g'] = '<cmd>Gitsigns prev_hunk<CR>',
-          ['n ]g'] = '<cmd>Gitsigns next_hunk<CR>',
-          ['n <space>gb'] = '<cmd>Gitsigns blame_line<CR>',
-        }
+      local gitsigns = require('gitsigns')
+      gitsigns.setup {
+        current_line_blame = true, -- show git blame to right of line
+        on_attach = function(bufnr)
+          -- helper function for keymapping
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- next hunk
+          map('n', ']g', function()
+            if vim.wo.diff then
+              vim.cmd.normal({']g', bang = true})
+            else
+              gitsigns.nav_hunk('next')
+            end
+          end)
+
+          -- previous hunk
+          map('n', '[g', function()
+            if vim.wo.diff then
+              vim.cmd.normal({'[g', bang = true})
+            else
+              gitsigns.nav_hunk('prev')
+            end
+          end)
+
+          -- open git blame for line in window
+          map('n', '<leader>gb', gitsigns.blame_line)
+        end
       }
-    end
-  }
-  use {
-    'anuvyklack/hydra.nvim',
-    config = function()
-      local Hydra = require('hydra')
-      Hydra({
-        name = 'Windows',
-        mode = 'n',
-        body = '<C-w>',
-        heads = {
-          { 'h', '<C-w>h' },
-          { 'j', '<C-w>j' },
-          { 'k', '<C-w>k' },
-          { 'l', '<C-w>l' },
-
-          { 'H', ':vnew<CR>' },
-          { 'J', ':below new<CR>' },
-          { 'K', ':new<CR>' },
-          { 'L', ':below vnew<CR>' },
-
-          { '[', ':resize -2<CR>' },
-          { ']', ':resize +2<CR>' },
-          { '{', ':vertical resize -2<CR>' },
-          { '}', ':vertical resize +2<CR>' },
-          { 'q', '<C-w>q' },
-        }
-      })
     end
   }
 
   -- lang & completion
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
-  use {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    requires = 'nvim-lua/plenary.nvim'
-  }
+  use 'neovim/nvim-lspconfig' -- simple setup for different LSPs
+  use 'williamboman/nvim-lsp-installer' -- easy functions like :LspInstall, :LspInfo
+
+  -- the standard for syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    lazy = false, -- load synchronously when booting
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = "all",
@@ -71,18 +68,24 @@ return require('packer').startup(function()
           enable = true,
         },
       }
+      vim.opt.foldlevel = 20
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     end
   }
+  -- autocompletion (C-<space>)
   use {
     'hrsh7th/nvim-cmp',
     requires = {
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-nvim-lsp-signature-help'},
-      {'quangnguyen30192/cmp-nvim-ultisnips'},
+      -- {'quangnguyen30192/cmp-nvim-ultisnips'},
       {'onsails/lspkind.nvim'},
     }
   }
+
+  -- CSS color highlighting - #f1f1f1
   use {
     'norcalli/nvim-colorizer.lua',
     config = function ()
@@ -90,15 +93,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- menus
-  use { 'ThePrimeagen/harpoon' }
-  use {
-    'SmiteshP/nvim-gps',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('nvim-gps').setup()
-    end
-  }
+  -- beautiful search menu
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -107,17 +102,8 @@ return require('packer').startup(function()
       { 'nvim-telescope/telescope-ui-select.nvim' },
     },
   }
-  use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require('octo').setup()
-    end
-  }
+
+  -- file manager
   use {
     'ms-jpq/chadtree',
     run = ':CHADdeps',
@@ -138,6 +124,8 @@ return require('packer').startup(function()
       })
     end
   }
+
+  -- terminal :Term
   use {
     'voldikss/vim-floaterm',
     config = function()

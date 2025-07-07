@@ -94,7 +94,53 @@ return require('packer').startup(function()
       {'hrsh7th/cmp-nvim-lsp-signature-help'},
       -- {'quangnguyen30192/cmp-nvim-ultisnips'},
       {'onsails/lspkind.nvim'},
-    }
+    },
+    config = function()
+      local cmp = require('cmp')
+      vim.o.completeopt = "menu,menuone,noselect"
+      cmp.setup {
+        mapping = cmp.mapping.preset.insert{
+          ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<CR>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace,
+          }),
+          ['<Tab>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace,
+          }),
+        },
+        sources = cmp.config.sources{
+          -- { name = 'ultisnips' },
+          -- { name = 'buffer' },
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_signature_help' },
+        },
+        formatting = {
+          format = require('lspkind').cmp_format({
+            mode = 'symbol_text',
+            maxWidth = 50
+          })
+        },
+        -- snippet = {
+        --   expand = function(args)
+        --     vim.fn['UltiSnips#Anon'](args.body)
+        --   end
+        -- },
+        completion = {
+          keyword_length = 3,
+        },
+        experimental = {
+          ghost_text = true,
+        },
+        performance = {
+          debounce = 200,
+          throttle = 100,
+        },
+      }
+    end
   }
 
   -- make folds look prettier
@@ -147,6 +193,36 @@ return require('packer').startup(function()
     end
   }
 
+  -- color theme
+  use {
+    'rebelot/kanagawa.nvim', 
+    config = function()
+      -- require('kanagawa').setup {}
+      vim.cmd [[colo kanagawa]]
+    end
+  }
+
+  -- statusline
+  use {
+    'nvim-lualine/lualine.nvim',
+    ensure_dependencies = true,
+    requires = {{
+      'kyazdani42/nvim-web-devicons',
+    }},
+    config = function ()
+      require('lualine').setup {
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'},
+        }
+      }
+    end
+  }
+
   -- old vim-plug plugins converted to packer
   use {
     'mbbill/undotree',
@@ -195,8 +271,6 @@ return require('packer').startup(function()
 
 
   -- external config files
-  reload('config.theme').init(use)
   reload('config.telescope')
-  reload('config.cmp')
   reload('config.lsp')
 end)

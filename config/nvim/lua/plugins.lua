@@ -11,7 +11,7 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'svermeulen/vimpeccable'
 
-  -- git diff lines and other utilities
+  -- git diff lines and other git utilities
   use {
     'lewis6991/gitsigns.nvim',
     tag = 'release',
@@ -43,11 +43,14 @@ return require('packer').startup(function()
     end
   }
 
-  -- lang & completion
+  -- LSP installer
+  use 'neovim/nvim-lspconfig'
   use {
     'williamboman/mason-lspconfig.nvim',
     requires = { 'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim' }
   }
+
+  -- document formatter
   use {
     'stevearc/conform.nvim',
     config = function()
@@ -62,10 +65,8 @@ return require('packer').startup(function()
 			})
     end
   }
-  use {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    requires = 'nvim-lua/plenary.nvim'
-  }
+
+  -- syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -83,6 +84,7 @@ return require('packer').startup(function()
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     end
   }
+
   -- autocompletion (C-<space>)
   use {
     'hrsh7th/nvim-cmp',
@@ -95,13 +97,7 @@ return require('packer').startup(function()
     }
   }
 
-  -- CSS color highlighting - #f1f1f1
-  use {
-    'norcalli/nvim-colorizer.lua',
-    config = function ()
-      require('colorizer').setup()
-    end
-  }
+  -- make folds look prettier
   use {
     'kevinhwang91/nvim-ufo',
     requires = 'kevinhwang91/promise-async',
@@ -118,15 +114,8 @@ return require('packer').startup(function()
     end
   }
 
-  -- menus
-  use { 'ThePrimeagen/harpoon' }
-  use {
-    'SmiteshP/nvim-navic',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('nvim-navic').setup()
-    end
-  }
+
+  -- best search menu ever
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -136,15 +125,11 @@ return require('packer').startup(function()
     },
   }
 
-  -- file manager
+  -- file explorer
   use {
     'ms-jpq/chadtree',
     run = ':CHADdeps',
     ensure_dependencies = true,
-    requires = {
-      'arcticicestudio/nord-dircolors',
-      'kyazdani42/nvim-web-devicons',
-    },
     config = function()
       vim.api.nvim_set_var("chadtree_settings", {
         ["keymap.change_dir"] = { "B" },
@@ -162,21 +147,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- terminal :Term
-  use {
-    'voldikss/vim-floaterm',
-    config = function()
-      vim.g.floaterm_height = 0.2
-      vim.g.floaterm_position = 'bottomright'
-      vim.g.floaterm_autoclose = 1
-      vim.g.floaterm_keymap_new = '<F12>'
-      vim.cmd(
-        'command! -nargs=* -complete=file Term exec "FloatermNew \"<q-args>\"" | wincmd p | stopinsert'
-      )
-    end
-  }
-
-  -- vim-plug plugins converted to packer
+  -- old vim-plug plugins converted to packer
   use {
     'mbbill/undotree',
     config = function()

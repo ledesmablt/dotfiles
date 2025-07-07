@@ -211,6 +211,53 @@ return require('packer').startup(function()
     end
   }
 
+  -- vim-plug plugins converted to packer
+  use {
+    'mbbill/undotree',
+    config = function()
+      vim.g.undotree_SplitWidth = 30
+    end
+  }
+  use {
+    'ledesmablt/vim-run',
+    config = function()
+      vim.g.run_autosave_logs = 1
+      vim.g.run_quiet_default = 1
+      vim.g.run_nostream_default = 1
+    end
+  }
+  use {
+    'junegunn/vim-peekaboo',
+    config = function()
+      vim.g.peekaboo_delay = 900
+    end
+  }
+  use {
+    'machakann/vim-highlightedyank',
+    config = function()
+      vim.g.highlightedyank_highlight_duration = 400
+    end
+  }
+  use 'mattn/emmet-vim'
+  use 'tpope/vim-abolish'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'tpope/vim-rails'
+  use 'gukz/ftFT.nvim'
+
+  use {
+    'SirVer/ultisnips',
+    config = function()
+      vim.g.UltiSnipsEnableSnipMate = 0
+      vim.g.UltiSnipsEditSplit = 'horizontal'
+      vim.g.UltiSnipsExpandTrigger = "<c-j>"
+    end
+  }
+
+
   -- external config files
   reload('config.theme').init(use)
   reload('config.telescope')

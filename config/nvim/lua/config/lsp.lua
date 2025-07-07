@@ -11,10 +11,6 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 -- keybindings
 local on_attach = function(client, bufnr)
   require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- if client.server_capabilities.colorProvider then
-  --   require('config.lsp-documentcolors').buf_attach(bufnr)
-  -- end
-
   -- helpers
   local opts = { noremap=true, silent=true }
   local function keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -30,7 +26,6 @@ local on_attach = function(client, bufnr)
   keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({ entry_maker = require("config.telescope")._qf_as_filenames()})<CR>', opts)
-  -- keymap('n', 'gs', '<cmd>lua require("config.telescope").workspace_symbols_with_input()<CR>', opts)
   keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
   keymap('n', '<leader>gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
@@ -45,32 +40,13 @@ local on_attach = function(client, bufnr)
   keymap('n', '<space>rm', '<cmd>TSLspRenameFile<CR>', opts)
   keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-  -- auto formatting & delete trailing newline
-  -- if client.server_capabilities.document_formatting then
-  --   vim.api.nvim_exec([[
-  --     augroup LspAutocommands
-  --       autocmd! * <buffer>
-  --       autocmd BufWritePre <buffer> lua local pos = vim.api.nvim_win_get_cursor(0); vim.lsp.buf.format(); vim.cmd("$g/^$/d"); if (pos[1] < vim.fn.line('$')) then vim.api.nvim_win_set_cursor(0, pos); end
-  --     augroup END
-  --   ]], true)
-  -- end
-
-  -- -- show diagnostics on hover
-  -- vim.api.nvim_exec([[
-  --   augroup LspHover
-  --     autocmd!
-  --     autocmd CursorHold * lua require('lspsaga.diagnostic').show_cursor_diagnostics()
-  --   augroup END
-  -- ]], true)
-
-  if client.server_capabilities.document_formatting then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*",
-      callback = function(args)
-        require("conform").format({ bufnr = args.buf })
-      end,
-    })
-  end
+  -- auto formatting
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function(args)
+      require("conform").format({ bufnr = args.buf })
+    end,
+  })
 end
 
 local flags = {
@@ -79,11 +55,8 @@ local flags = {
 
 local simple_servers = {
   'bashls', 'html', 'jsonls', 'prismals',
-  'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls',
-  'diagnosticls', 'lua_ls',
-  'bashls', 'dockerls', 'html', 'jsonls', 'prismals',
-  'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls',
-  'golangci_lint_ls', 'gopls', 'rubocop',
+  'pyright', 'svelte', 'tailwindcss', 'yamlls',
+  'dockerls', 'golangci_lint_ls', 'gopls', 'rubocop',
 }
 require('mason').setup()
 require('mason-lspconfig').setup {
@@ -96,31 +69,3 @@ for _, lsp in ipairs(simple_servers) do
     flags = flags,
   }
 end
-
-nvim_lsp.solargraph.setup {
-  -- cmd = { 'bundle', 'exec solargraph stdio' },
-  cmd = { os.getenv('HOME')..'/.asdf/shims/solargraph', 'stdio' },
-  init_options = { formatting = false },
-  settings = { solargraph = { diagnostics = false }},
-}
-
--- ts + gql
-nvim_lsp.ts_ls.setup {
-  init_options = require('nvim-lsp-ts-utils').init_options,
-  on_attach = function(client, bufnr)
-    local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup {
-      auto_inlay_hints = false,
-      always_organize_imports = false,
-    }
-    -- let diagnosticls (setup below) handle the formatting
-    client.server_capabilities.document_formatting = true
-    on_attach(client, bufnr)
-  end,
-  flags = flags,
-}
-nvim_lsp.graphql.setup {
-  on_attach = on_attach,
-  flags = flags,
-  filetypes = { 'graphql', 'typescript', 'typescriptreact' },
-}

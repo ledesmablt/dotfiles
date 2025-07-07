@@ -58,10 +58,12 @@ local simple_servers = {
   'bashls', 'html', 'jsonls', 'prismals',
   'pyright', 'svelte', 'tailwindcss', 'yamlls',
   'dockerls', 'golangci_lint_ls', 'gopls', 'rubocop',
+  'solargraph', 'ts_ls',
 }
 require('mason').setup()
 require('mason-lspconfig').setup {
-  ensure_installed = simple_servers
+  ensure_installed = simple_servers,
+  automatic_enable = false,
 }
 
 for _, lsp in ipairs(simple_servers) do

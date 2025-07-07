@@ -78,10 +78,12 @@ local flags = {
 }
 
 local simple_servers = {
-  'bashls', 'cssls', 'html', 'jsonls', 'prismals',
+  'bashls', 'html', 'jsonls', 'prismals',
   'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls',
   'diagnosticls', 'lua_ls',
-  -- 'golangci_lint_ls', 'gopls', 'dockerfile-language-server',
+  'bashls', 'dockerls', 'html', 'jsonls', 'prismals',
+  'pyright', 'svelte', 'tailwindcss', 'vimls', 'yamlls',
+  'golangci_lint_ls', 'gopls', 'rubocop',
 }
 require('mason').setup()
 require('mason-lspconfig').setup {

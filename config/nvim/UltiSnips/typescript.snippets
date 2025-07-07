@@ -1,3 +1,5 @@
+extends typescriptreact
+
 snippet try "try/catch"
 try {
 	${1}
@@ -7,23 +9,27 @@ try {
 endsnippet
 
 snippet import "import"
-import ${2:module} from '${1:packageName}'
+import { ${2:module} } from '${1:packageName}'
 endsnippet
 
 snippet gql "gql"
 import { gql } from '@apollo/client'
 
 export default gql\`
-	${1:query} ${2:Alias} ${3:(variables)} {
-		{$4}
+	${1:query} ${2:QueryName}(${3}) {
+		${4}
 	}
 \`
 endsnippet
 
-snippet log "log"
-console.log(${1})
+snippet fn "function"
+export ${1:const functionName} = (${2:args}): ${3:ReturnType} => {
+	${4}
+}
 endsnippet
 
-snippet ../ "import parent" i
-../../
+snippet afn "async function"
+export ${1:const functionName} = async (${2:args}): Promise<${3:ReturnType}> => {
+	${4}
+}
 endsnippet

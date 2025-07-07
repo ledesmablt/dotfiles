@@ -14,48 +14,58 @@ return require('packer').startup(function()
   -- git diff lines and other utilities
   use {
     'lewis6991/gitsigns.nvim',
-    config = function ()
+    tag = 'release',
+    on_attach = function(bufnr)
       local gitsigns = require('gitsigns')
-      gitsigns.setup {
-        current_line_blame = true, -- show git blame to right of line
-        on_attach = function(bufnr)
-          -- helper function for keymapping
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
 
-          -- next hunk
-          map('n', ']g', function()
-            if vim.wo.diff then
-              vim.cmd.normal({']g', bang = true})
-            else
-              gitsigns.nav_hunk('next')
-            end
-          end)
+      local function map(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
 
-          -- previous hunk
-          map('n', '[g', function()
-            if vim.wo.diff then
-              vim.cmd.normal({'[g', bang = true})
-            else
-              gitsigns.nav_hunk('prev')
-            end
-          end)
-
-          -- open git blame for line in window
-          map('n', '<leader>gb', gitsigns.blame_line)
+      -- Navigation
+      map('n', ']g', function()
+        if vim.wo.diff then
+          vim.cmd.normal({']g', bang = true})
+        else
+          gitsigns.nav_hunk('next')
         end
-      }
+      end)
+
+      map('n', '[g', function()
+        if vim.wo.diff then
+          vim.cmd.normal({'[g', bang = true})
+        else
+          gitsigns.nav_hunk('prev')
+        end
+      end)
     end
   }
 
   -- lang & completion
-  use 'neovim/nvim-lspconfig' -- simple setup for different LSPs
-  use 'williamboman/nvim-lsp-installer' -- easy functions like :LspInstall, :LspInfo
-
-  -- the standard for syntax highlighting
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    requires = { 'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim' }
+  }
+  use {
+    'stevearc/conform.nvim',
+    config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					typescriptreact = { "prettierd" },
+				},
+			})
+    end
+  }
+  use {
+    'jose-elias-alvarez/nvim-lsp-ts-utils',
+    requires = 'nvim-lua/plenary.nvim'
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -63,7 +73,7 @@ return require('packer').startup(function()
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = "all",
-        ignore_install = { "phpdoc" }, -- buggy
+        ignore_install = { "phpdoc", "ipkg" }, -- buggy
         highlight = {
           enable = true,
         },
@@ -92,8 +102,31 @@ return require('packer').startup(function()
       require('colorizer').setup()
     end
   }
+  use {
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async',
+    config = function()
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter','indent'}
+        end
+      })
+      -- vim.o.foldcolumn = 0
+      vim.o.foldenable = true
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+    end
+  }
 
-  -- beautiful search menu
+  -- menus
+  use { 'ThePrimeagen/harpoon' }
+  use {
+    'SmiteshP/nvim-navic',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-navic').setup()
+    end
+  }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -107,7 +140,11 @@ return require('packer').startup(function()
   use {
     'ms-jpq/chadtree',
     run = ':CHADdeps',
-    requires = { 'arcticicestudio/nord-dircolors' },
+    ensure_dependencies = true,
+    requires = {
+      'arcticicestudio/nord-dircolors',
+      'kyazdani42/nvim-web-devicons',
+    },
     config = function()
       vim.api.nvim_set_var("chadtree_settings", {
         ["keymap.change_dir"] = { "B" },
@@ -138,6 +175,53 @@ return require('packer').startup(function()
       )
     end
   }
+
+  -- vim-plug plugins converted to packer
+  use {
+    'mbbill/undotree',
+    config = function()
+      vim.g.undotree_SplitWidth = 30
+    end
+  }
+  use {
+    'ledesmablt/vim-run',
+    config = function()
+      vim.g.run_autosave_logs = 1
+      vim.g.run_quiet_default = 1
+      vim.g.run_nostream_default = 1
+    end
+  }
+  use {
+    'junegunn/vim-peekaboo',
+    config = function()
+      vim.g.peekaboo_delay = 900
+    end
+  }
+  use {
+    'machakann/vim-highlightedyank',
+    config = function()
+      vim.g.highlightedyank_highlight_duration = 400
+    end
+  }
+  use 'mattn/emmet-vim'
+  use 'tpope/vim-abolish'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'tpope/vim-rails'
+  use 'gukz/ftFT.nvim'
+
+  use {
+    'SirVer/ultisnips',
+    config = function()
+      vim.g.UltiSnipsEnableSnipMate = 0
+      vim.g.UltiSnipsEditSplit = 'horizontal'
+      vim.g.UltiSnipsExpandTrigger = "<c-j>"
+    end
+  }
+
 
   -- external config files
   reload('config.theme').init(use)

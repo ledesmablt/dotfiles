@@ -1,20 +1,12 @@
 local M = {}
 
 M.init = function(use)
-  -- colorscheme
+  -- theme
   use {
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    'rebelot/kanagawa.nvim', 
     config = function()
-      local catppuccin = require('catppuccin')
-      catppuccin.setup {
-        integrations = {
-          cmp = true,
-          treesitter = true,
-          gitsigns = true,
-        },
-      }
-      vim.cmd [[colo catppuccin-mocha]]
+      -- require('kanagawa').setup {}
+      vim.cmd [[colo kanagawa]]
     end
   }
 
@@ -22,11 +14,18 @@ M.init = function(use)
   use {
     'nvim-lualine/lualine.nvim',
     ensure_dependencies = true,
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-    config = function()
+    requires = {{
+      'kyazdani42/nvim-web-devicons',
+    }},
+    config = function ()
       require('lualine').setup {
-        options = {
-          theme = 'catppuccin'
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'},
         }
       }
     end

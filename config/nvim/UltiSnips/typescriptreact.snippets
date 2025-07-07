@@ -19,18 +19,16 @@ useEffect(() => {
 }, [${2:/* deps */}])
 endsnippet
 
-snippet <> "JSX tag"
-<${1:TagName}></$1>
-endsnippet
-
 snippet react "React boilerplate"
 import React, { ReactElement } from 'react'
 
-interface Props {}
-const `!p snip.rv=snip.basename` = ({}: Props): ReactElement => {
+const `!p
+component_name=snip.basename if snip.basename!='index' else path.split('/')[-2]
+snip.rv = component_name
+	` = ($1): ReactElement => {
 	return ${2:<div/>}
 }
-export default `!p snip.rv=snip.basename`
+export default `!p snip.rv=component_name`
 endsnippet
 
 snippet useStyles "useStyles hook"

@@ -5,6 +5,7 @@
 	user = ledesmablt
 [commit]
 	verbose = true
+	gpgsign = true
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore_global
@@ -18,4 +19,6 @@
 	pr = !gh pr checkout
 	can = "commit --amend --no-edit"
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[include]
+        path = ~/.gitconfig.local

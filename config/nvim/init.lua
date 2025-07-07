@@ -115,6 +115,6 @@ end
 
 -- Load other configuration files
 require('plugins')
-vim.cmd('source ~/.config/nvim/functions.vim')
-vim.cmd('source ~/.config/nvim/mappings.vim')
-vim.cmd('source ~/.config/nvim/budget_startify.vim')
+require('functions')
+require('mappings')
+require('startup')

@@ -26,19 +26,15 @@ return require('packer').startup(function()
 
           -- Navigation
           map('n', ']g', function()
-            if vim.wo.diff then
-              vim.cmd.normal({']g', bang = true})
-            else
-              gitsigns.nav_hunk('next')
-            end
+            gitsigns.nav_hunk('next')
           end)
 
           map('n', '[g', function()
-            if vim.wo.diff then
-              vim.cmd.normal({'[g', bang = true})
-            else
-              gitsigns.nav_hunk('prev')
-            end
+            gitsigns.nav_hunk('prev')
+          end)
+
+          map('n', '<leader>gb', function()
+            gitsigns.blame_line()
           end)
         end
       }

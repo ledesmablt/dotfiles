@@ -57,6 +57,30 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use {
+    'williamboman/mason-lspconfig.nvim',
+    requires = { 'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim' }
+  }
+  use {
+    'stevearc/conform.nvim',
+    config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					-- python = { "isort", "black" },
+					-- You can customize some of the format options for the filetype (:help conform.format)
+					-- rust = { "rustfmt", lsp_format = "fallback" },
+					-- Conform will run the first available formatter
+					-- ruby = { "rubocop" },
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					typescriptreact = { "prettierd" },
+				},
+			})
+    end
+  }
+  use {
     'jose-elias-alvarez/nvim-lsp-ts-utils',
     requires = 'nvim-lua/plenary.nvim'
   }
@@ -66,7 +90,7 @@ return require('packer').startup(function()
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = "all",
-        ignore_install = { "phpdoc" }, -- buggy
+        ignore_install = { "phpdoc", "ipkg" }, -- buggy
         highlight = {
           enable = true,
         },
@@ -89,14 +113,29 @@ return require('packer').startup(function()
       require('colorizer').setup()
     end
   }
+  use {
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async',
+    config = function()
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter','indent'}
+        end
+      })
+      -- vim.o.foldcolumn = 0
+      vim.o.foldenable = true
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+    end
+  }
 
   -- menus
   use { 'ThePrimeagen/harpoon' }
   use {
-    'SmiteshP/nvim-gps',
+    'SmiteshP/nvim-navic',
     requires = 'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('nvim-gps').setup()
+      require('nvim-navic').setup()
     end
   }
   use {
@@ -121,7 +160,11 @@ return require('packer').startup(function()
   use {
     'ms-jpq/chadtree',
     run = ':CHADdeps',
-    requires = { 'arcticicestudio/nord-dircolors' },
+    ensure_dependencies = true,
+    requires = {
+      'arcticicestudio/nord-dircolors',
+      'kyazdani42/nvim-web-devicons',
+    },
     config = function()
       vim.api.nvim_set_var("chadtree_settings", {
         ["keymap.change_dir"] = { "B" },

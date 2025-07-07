@@ -16,6 +16,17 @@ require('telescope').setup {
       mirror = true,
       preview_cutoff = 30,
     },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+        ["<c-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<c-a>"] = actions.select_all,
+        ["<c-o>"] = actions.select_horizontal,
+        ["<c-x>"] = false,
+      },
+    },
     pickers = {
       command_history = {
         sorting_strategy = "descending",
@@ -30,16 +41,12 @@ require('telescope').setup {
         ignore_current_buffer = true,
         sort_lastused = true,
         -- sort_mru = true doesn't work
+        mappings = {
+          i = {
+            ["<c-x>"] = actions.delete_buffer + actions.move_to_top,
+          }
+        },
       }
-    },
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-a>"] = actions.select_all,
-      },
     },
   },
   extensions = {
@@ -60,6 +67,26 @@ M.search_dotfiles = function()
   _telescope.find_files({
     prompt_title = "Dotfiles",
     cwd = "~/projects/dotfiles"
+  })
+end
+
+M.search_downloads = function()
+  _telescope.find_files({
+    prompt_title = "Downloads",
+    cwd = "~/Downloads"
+  })
+end
+
+M.buffers = function()
+  _telescope.buffers({
+    ignore_current_buffer = true,
+    sort_lastused = true,
+    -- sort_mru = true doesn't work
+    mappings = {
+      i = {
+        ["<c-x>"] = actions.delete_buffer + actions.move_to_top,
+      }
+    },
   })
 end
 

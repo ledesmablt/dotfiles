@@ -52,6 +52,9 @@ nnoremap <silent> <leader>H :vnew<CR>
 nnoremap <silent> <leader>J :below new<CR>
 nnoremap <silent> <leader>K :new<CR>
 nnoremap <silent> <leader>L :below vnew<CR>
+nnoremap <silent> <leader>tn :tabnext<CR>
+nnoremap <silent> <leader>tp :tabprevious<CR>
+nnoremap <silent> <leader>tt :tabnew<CR>
 nnoremap <silent> <M-[> :resize -2<CR>
 nnoremap <silent> <M-]> :resize +2<CR>
 tnoremap <silent> <C-W> <C-\><C-N><C-W>
@@ -88,6 +91,7 @@ nnoremap <silent> <leader>sg :Telescope live_grep<CR>
 nnoremap <silent> <leader>sq :Telescope quickfix<CR>
 nnoremap <silent> <leader>sf :Telescope oldfiles<CR>
 nnoremap <silent> <leader>sd :lua require('config.telescope').search_dotfiles()<CR>
+nnoremap <silent> <leader>sD :lua require('config.telescope').search_downloads()<CR>
 nnoremap <silent> <leader>sh :lua require('config.telescope').command_history()<CR>
 
 augroup Mappings
@@ -95,3 +99,23 @@ augroup Mappings
   autocmd FileType nerdtree nnoremap <silent> <leader>u :NERDTreeClose<CR>:UndotreeToggle<CR>:UndotreeFocus<CR>
   autocmd FileType undotree nnoremap <silent> <leader>e :UndotreeHide<CR>:NERDTreeToggle<CR>
 augroup END
+
+nnoremap <leader>y :call SwapAppSpec()<CR>
+
+function! SwapAppSpec()
+  let l:current_file = expand('%')
+  let l:target_file = ''
+
+  if l:current_file =~ '^app/'
+    let l:target_file = substitute(l:current_file, '^app/', 'spec/', '')
+    let l:target_file = substitute(l:target_file, '\.rb$', '_spec.rb', '')
+  elseif l:current_file =~ '^spec/'
+    let l:target_file = substitute(l:current_file, '^spec/', 'app/', '')
+    let l:target_file = substitute(l:target_file, '_spec\.rb$', '.rb', '')
+  else
+    echo "Not an app/ or spec/ file"
+    return
+  endif
+
+  execute 'edit ' . l:target_file
+endfunction

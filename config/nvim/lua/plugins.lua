@@ -41,6 +41,15 @@ return require('packer').startup(function()
     end
   }
 
+  -- GitHub Copilot for smart complete
+  use {
+    'github/copilot.vim',
+    config = function()
+      -- disable this by default so it doesn't ruin my habits
+      vim.g.copilot_enabled = false
+    end
+  }
+
   -- LSP installer
   use 'neovim/nvim-lspconfig'
   use {

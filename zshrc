@@ -15,10 +15,10 @@ DISABLE_UPDATE_PROMPT="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=( \
-  gitfast tmux fzf yarn npm gh \
-  asdf \
-  # urltools docker docker-compose gcloud aws \
-  # pip gem bundler rails rvm \
+  git gitfast gh tmux fzf asdf \
+  yarn npm \
+  rails gem bundler \
+  # urltools docker docker-compose gcloud aws pip \
 )
 
 # actually initialize ZSH

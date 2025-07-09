@@ -82,7 +82,6 @@ map('n', '<M-k>', ':colder<CR>')
 map('n', '<leader><C-l>', ':e<CR>:redraw<CR>:set nu rnu<CR>')
 
 -- Plugin mappings
-map('i', '<C-l>', '<C-y>,')  -- Emmet
 map('n', '<leader>e', ':CHADopen<CR>')
 map('n', '<leader>u', ':UndotreeToggle<CR>:UndotreeFocus<CR>')
 

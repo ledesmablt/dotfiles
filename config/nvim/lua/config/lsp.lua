@@ -58,7 +58,7 @@ local simple_servers = {
   'bashls', 'html', 'jsonls', 'prismals',
   'pyright', 'svelte', 'tailwindcss', 'yamlls',
   'dockerls', 'golangci_lint_ls', 'gopls', 'rubocop',
-  'solargraph', 'ts_ls',
+  'solargraph', 'ts_ls', 'emmet_language_server',
 }
 require('mason').setup()
 require('mason-lspconfig').setup {

@@ -140,7 +140,7 @@ return require('packer').startup(function()
           keyword_length = 3,
         },
         experimental = {
-          ghost_text = true,
+          ghost_text = false,
         },
         performance = {
           debounce = 200,
@@ -257,7 +257,6 @@ return require('packer').startup(function()
       vim.g.highlightedyank_highlight_duration = 400
     end
   }
-  use 'mattn/emmet-vim'
   use 'tpope/vim-abolish'
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'

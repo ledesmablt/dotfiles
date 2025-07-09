@@ -22,7 +22,7 @@ plugins=( \
 )
 
 # actually initialize ZSH
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # ensures that the coloring in the completion menu matches `ls` colors
 # (e.g., green for executables, blue for directories)

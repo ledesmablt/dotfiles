@@ -7,7 +7,7 @@ command_exists() {
 }
 
 # init homebrew env
-command_exists "brew" && eval "$(brew shellenv)"
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # set $PATH variables
 export PATH="$PATH:$HOME/.go/bin"
